@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Candidate {
+  id            BigInt    @id @default(autoincrement())
+  name          String    @db.VarChar(200)
+  is_remaining Boolean    @default(true)
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(200)
+  isRemaining   Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  UpdatedAt     DateTime  @default(now())
+}
