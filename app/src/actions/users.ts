@@ -79,9 +79,8 @@ export const addUser = async (formData: FormData) => {
       method: "POST",
       body: JSON.stringify({ name: name }),
     });
-    const data = await response.json();
+
     revalidatePath("/");
-    return Response.json({ data });
   } catch (error) {
     throw new Error(`impossible de créer un utilisateur : ${error}`);
   }

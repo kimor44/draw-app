@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getUsers } from "@/app/actions";
+import { getUsers } from "@/app/src/actions/users";
 import Users from "@/app/components/users";
 import NewUser from "@/app/components/new_user";
 
@@ -12,7 +12,6 @@ export default async function Home() {
 
       <Users users={users} />
       <NewUser />
-      <p className="h-48 bg-red-500" />
       <div className="h-48"></div>
     </main>
   );

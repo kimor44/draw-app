@@ -10,8 +10,10 @@ export const getUserInformation = async (id: number) => {
       },
     });
 
+    if (!user) throw new Error(`User not found`);
+
     return user;
   } catch (error) {
-    throw new Error(`User not found`);
+    throw new Error(`User not found : ${error}`);
   }
 };

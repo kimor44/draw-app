@@ -1,6 +1,6 @@
 "use client";
 
-import { addUser } from "@/app/actions";
+import { addUser } from "@/app/src/actions/users";
 const newUser = () => {
   return (
     <form action={addUser}>

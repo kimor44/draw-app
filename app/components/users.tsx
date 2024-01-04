@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import UserLine from "@/app/components/user_line";
 
-type TUser = {
+export type TUser = {
   id: number;
   name: string;
   isRemaining: boolean;
@@ -16,13 +16,9 @@ type TUsers = {
 
 const Users = ({ users }: TUsers) => {
   return (
-    <ul>
+    <ul className="flex flex-col gap-4">
       {Object.values(users)?.map((user) => {
-        return (
-          <li key={user?.id.toString()}>
-            <Link href={`/users/${user?.id}`}>{user?.name}</Link>
-          </li>
-        );
+        return <UserLine key={user?.id.toString()} user={user} />;
       })}
     </ul>
   );
