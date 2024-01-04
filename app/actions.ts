@@ -1,6 +1,7 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function getCandidates() {
@@ -70,3 +71,18 @@ export async function addUsers() {
     ],
   });
 }
+
+export const addUser = async (formData: FormData) => {
+  const name = String(formData.get("name"));
+  try {
+    const response = await fetch("http://localhost:3000/api/user", {
+      method: "POST",
+      body: JSON.stringify({ name: name }),
+    });
+    const data = await response.json();
+    revalidatePath("/");
+    return Response.json({ data });
+  } catch (error) {
+    throw new Error(`impossible de créer un utilisateur : ${error}`);
+  }
+};

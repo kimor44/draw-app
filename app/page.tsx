@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getUsers } from "@/app/actions";
-import Users from "./components/users";
+import Users from "@/app/components/users";
+import NewUser from "@/app/components/new_user";
 
 export default async function Home() {
   const users = await getUsers();
@@ -10,6 +11,7 @@ export default async function Home() {
       <Link href="/draw">Draw</Link>
 
       <Users users={users} />
+      <NewUser />
       <p className="h-48 bg-red-500" />
       <div className="h-48"></div>
     </main>
