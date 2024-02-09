@@ -29,11 +29,20 @@ const UserLine: React.FC<TUserLine> = ({ user }: TUserLine) => {
     });
   };
 
+  const classes = user.isRemaining
+    ? "text-green-500"
+    : "text-slate-400 line-through";
+
   return (
-    <li key={user?.id.toString()} className="flex gap-3 items-center">
-      <Link href={`/users/${user?.id}`}>{user?.name}</Link>
+    <li
+      key={user?.id.toString()}
+      className="flex justify-between items-center w-full"
+    >
+      <Link className={classes} href={`/users/${user?.id}`}>
+        {user?.name}
+      </Link>
       <button
-        className="text-red-600 px-4 py-2 bg-slate-700 border border-red-600 rounded-lg"
+        className="text-red-600 disabled:text-red-300 px-2 py-1 bg-slate-700 disabled:bg-slate-300 border border-red-600 rounded-lg font-bold disabled:opacity-75"
         onClick={deleteUser}
         disabled={isPending}
       >

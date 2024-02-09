@@ -16,7 +16,7 @@ type TUsers = {
 
 const Users = ({ users }: TUsers) => {
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col gap-4 w-40">
       {Object.values(users)?.map((user) => {
         return <UserLine key={user?.id.toString()} user={user} />;
       })}

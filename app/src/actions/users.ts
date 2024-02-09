@@ -8,8 +8,6 @@ export async function getCandidates() {
   const prisma = new PrismaClient();
   const candidates = await prisma.candidate.findMany();
 
-  console.log("candidates :", candidates);
-
   return NextResponse.json(JSON.stringify(candidates));
 }
 
@@ -19,6 +17,20 @@ export async function getUsers() {
 
   return users;
 }
+
+export const toggleRemainingUser = async (id: number) => {
+  const prisma = new PrismaClient();
+  const user = await prisma.user.update({
+    where: {
+      id: id,
+    },
+    data: {
+      isRemaining: false,
+    },
+  });
+
+  return user;
+};
 
 export async function insertCandidates() {
   const prisma = new PrismaClient();
