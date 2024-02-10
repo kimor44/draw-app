@@ -1,5 +1,5 @@
 "use client";
-import { TUser } from "@/app/components/users";
+import { TCandidate } from "@/app/features/home/Candidates";
 import { getRandomInt } from "@/app/lib/utils/getRandomInt";
 import { waiting } from "@/app/lib/utils/waiting";
 import { toggleRemainingUser } from "@/app/src/actions/users";
@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 export type TLaunchNewDraw = {
-  users: TUser[];
+  users: TCandidate[];
 };
 
 const LaunchNewDraw = ({ users }: TLaunchNewDraw) => {
@@ -15,7 +15,7 @@ const LaunchNewDraw = ({ users }: TLaunchNewDraw) => {
   const [isPending, startTransition] = useTransition();
   const launchDraw = () => {
     startTransition(async () => {
-      const randomUser: TUser = users[getRandomInt(0, users.length - 1)];
+      const randomUser: TCandidate = users[getRandomInt(0, users.length - 1)];
       waiting(2000);
 
       try {

@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { DrawModal } from "./DrawModal";
-import { TUser } from "@/app/components/users";
+import { TCandidate } from "@/app/features/home/Candidates";
 
 type TNewDraw = {
-  users: TUser[];
+  users: TCandidate[];
 };
 
 const NewDraw: React.FC<TNewDraw> = ({ users }: TNewDraw) => {

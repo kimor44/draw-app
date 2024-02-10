@@ -1,9 +1,9 @@
 "use client";
 
-import { TUser } from "@/app/components/users";
+import { TCandidate } from "@/app/features/home/Candidates";
 
 type TRemainingUsers = {
-  users: TUser[];
+  users: TCandidate[];
 };
 
 const RemainingUsers: React.FC<TRemainingUsers> = ({

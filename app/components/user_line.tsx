@@ -1,10 +1,10 @@
-import { TUser } from "@/app/components/users";
+import { TCandidate } from "@/app/features/home/Candidates";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 type TUserLine = {
-  user: TUser;
+  user: TCandidate;
 };
 
 const UserLine: React.FC<TUserLine> = ({ user }: TUserLine) => {
