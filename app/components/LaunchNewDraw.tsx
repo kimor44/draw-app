@@ -1,7 +1,7 @@
 "use client";
 import { TUser } from "@/app/components/users";
-import { getRandomInt } from "@/app/utils/getRandomInt";
-import { waiting } from "@/app/utils/waiting";
+import { getRandomInt } from "@/app/lib/utils/getRandomInt";
+import { waiting } from "@/app/lib/utils/waiting";
 import { toggleRemainingUser } from "@/app/src/actions/users";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
