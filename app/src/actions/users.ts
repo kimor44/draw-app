@@ -26,6 +26,7 @@ export const toggleRemainingUser = async (id: number) => {
     },
     data: {
       isRemaining: false,
+      UpdatedAt: new Date(),
     },
   });
 
