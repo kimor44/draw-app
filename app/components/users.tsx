@@ -6,6 +6,7 @@ export type TUser = {
   id: number;
   name: string;
   isRemaining: boolean;
+  ipAddress: string;
   createdAt: Date;
   updatedAt?: Date;
 };

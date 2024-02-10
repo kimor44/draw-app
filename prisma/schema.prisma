@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Candidate {
-  id            BigInt    @id @default(autoincrement())
+  id            Int       @id @default(autoincrement())
   name          String    @db.VarChar(200)
   isRemaining   Boolean   @default(true)
   ipAddress     String    @default("0.0.0.0")

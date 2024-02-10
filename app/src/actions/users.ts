@@ -3,14 +3,6 @@
 import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
-
-export async function getCandidates() {
-  const prisma = new PrismaClient();
-  const candidates = await prisma.candidate.findMany();
-
-  return NextResponse.json(JSON.stringify(candidates));
-}
 
 export async function getUsers() {
   const prisma = new PrismaClient();
@@ -33,29 +25,6 @@ export const toggleRemainingUser = async (id: number) => {
 
   return user;
 };
-
-export async function insertCandidates() {
-  const prisma = new PrismaClient();
-  await prisma.candidate.createMany({
-    data: [
-      {
-        name: "Alice",
-      },
-      {
-        name: "John",
-      },
-      {
-        name: "Tonton",
-      },
-      {
-        name: "Sandy",
-      },
-      {
-        name: "Gégé",
-      },
-    ],
-  });
-}
 
 export const deleteCandidate = async () => {
   const prisma = new PrismaClient();
