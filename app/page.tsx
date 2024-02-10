@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getCandidates } from "@/app/src/actions/candidates";
 import Candidates, { TCandidate } from "@/app/features/home/Candidates";
-import NewUser from "@/app/components/new_user";
+import { NewCandidate } from "@/app/features/home/NewCandidate";
 import { NewDraw } from "@/app/components/NewDraw";
 
 export default async function Home() {
@@ -19,7 +19,7 @@ export default async function Home() {
     <main className="flex h-full flex-col items-center gap-10 p-12">
       <Link href="/draw">Draw</Link>
       <Candidates candidates={copiedCandidates} />
-      <NewUser />
+      <NewCandidate />
       <NewDraw users={filteredCandidatesByRemaining(copiedCandidates)} />
       <div className="h-48"></div>
     </main>
