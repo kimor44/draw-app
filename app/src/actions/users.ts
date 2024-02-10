@@ -1,8 +1,6 @@
-"use server";
+("use server");
 
-import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import { PrismaClient } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 
 export async function getUsers() {
   const prisma = new PrismaClient();
@@ -54,17 +52,3 @@ export async function addUsers() {
     ],
   });
 }
-
-export const addUser = async (formData: FormData) => {
-  const name = String(formData.get("name"));
-  try {
-    const response = await fetch("http://localhost:3000/api/user", {
-      method: "POST",
-      body: JSON.stringify({ name: name, ipAddress: getIpAddress() }),
-    });
-
-    revalidatePath("/");
-  } catch (error) {
-    throw new Error(`impossible de créer un utilisateur : ${error}`);
-  }
-};

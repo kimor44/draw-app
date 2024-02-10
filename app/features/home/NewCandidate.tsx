@@ -1,9 +1,10 @@
 "use client";
 
-import { addUser } from "@/app/src/actions/users";
+import { addCandidate } from "@/app/src/actions/candidates";
+
 const NewCandidate = () => {
   return (
-    <form action={addUser} className="flex gap-4">
+    <form action={addCandidate} className="flex gap-4">
       <input
         className="text-black p-3 rounded-lg"
         type="text"
