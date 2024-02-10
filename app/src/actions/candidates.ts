@@ -12,7 +12,7 @@ export async function getCandidates() {
 export const addCandidate = async (formData: FormData) => {
   const name = String(formData.get("name"));
   try {
-    const response = await fetch("http://localhost:3000/api/user", {
+    await fetch("http://localhost:3000/api/candidate", {
       method: "POST",
       body: JSON.stringify({ name: name, ipAddress: getIpAddress() }),
     });
