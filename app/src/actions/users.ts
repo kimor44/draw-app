@@ -1,5 +1,6 @@
 "use server";
 
+import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
@@ -90,7 +91,7 @@ export const addUser = async (formData: FormData) => {
   try {
     const response = await fetch("http://localhost:3000/api/user", {
       method: "POST",
-      body: JSON.stringify({ name: name }),
+      body: JSON.stringify({ name: name, ipAddress: getIpAddress() }),
     });
 
     revalidatePath("/");

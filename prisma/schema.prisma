@@ -21,6 +21,7 @@ model User {
   id            Int       @id @default(autoincrement())
   name          String    @db.VarChar(200)
   isRemaining   Boolean   @default(true)
+  ipAddress     String?   @db.VarChar(200)
   createdAt     DateTime  @default(now())
   UpdatedAt     DateTime  @default(now())
 }

@@ -10,6 +10,7 @@ export const POST = async (req: Request, res: Response) => {
     const user = await prisma.user.create({
       data: {
         name: body.name,
+        ipAddress: body.ipAddress,
       },
     });
 
