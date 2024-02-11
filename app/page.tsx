@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getCandidates } from "@/app/src/actions/candidates";
+import { getCandidates } from "@/app/src/actions/candidate/getCandidates";
 import Candidates, { TCandidate } from "@/app/features/home/Candidates";
 import { NewCandidate } from "@/app/features/home/NewCandidate";
 import { NewDraw } from "@/app/components/NewDraw";

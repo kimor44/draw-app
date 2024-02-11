@@ -1,6 +1,6 @@
 "use client";
 
-import { addCandidate } from "@/app/src/actions/candidates";
+import { addCandidate } from "@/app/src/actions/candidate/addCandidate";
 
 const NewCandidate = () => {
   return (
