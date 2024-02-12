@@ -3,21 +3,23 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
-type TUserLine = {
+type TCandidateLine = {
   candidate: TCandidate;
 };
 
-const CandidateLine: React.FC<TUserLine> = ({ candidate }: TUserLine) => {
+const CandidateLine: React.FC<TCandidateLine> = ({
+  candidate,
+}: TCandidateLine) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
-  const deleteUser = (e: React.MouseEvent<HTMLElement>) => {
+  const deleteCandidate = (e: React.MouseEvent<HTMLElement>) => {
     startTransition(async () => {
       e.preventDefault();
       const id = candidate.id;
 
       try {
-        await fetch("http://localhost:3000/api/user", {
+        await fetch("http://localhost:3000/api/candidate", {
           method: "DELETE",
           body: JSON.stringify({ id: id }),
         });
@@ -38,12 +40,18 @@ const CandidateLine: React.FC<TUserLine> = ({ candidate }: TUserLine) => {
       key={candidate?.id.toString()}
       className="flex justify-between items-center w-full"
     >
-      <Link className={classes} href={`/users/${candidate?.id}`}>
+      <Link
+        className={classes}
+        href={{
+          pathname: "/candidates",
+          query: { id: candidate?.id },
+        }}
+      >
         {candidate?.name}
       </Link>
       <button
         className="text-red-600 disabled:text-red-300 px-2 py-1 bg-slate-700 disabled:bg-slate-300 border border-red-600 rounded-lg font-bold disabled:opacity-75"
-        onClick={deleteUser}
+        onClick={deleteCandidate}
         disabled={isPending}
       >
         X

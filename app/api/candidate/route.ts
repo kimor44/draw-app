@@ -22,3 +22,23 @@ export const POST = async (req: Request, res: Response) => {
     );
   }
 };
+
+export const DELETE = async (req: Request) => {
+  const body = await req.json();
+  const prisma = new PrismaClient();
+
+  try {
+    await prisma.candidate.delete({
+      where: {
+        id: Number(body.id),
+      },
+    });
+
+    return NextResponse.json({ message: "Candidate deleted" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: `An error went ${error}` },
+      { status: 500 }
+    );
+  }
+};
