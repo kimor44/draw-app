@@ -5,10 +5,10 @@ import { DrawModal } from "./DrawModal";
 import { TCandidate } from "@/app/features/home/Candidates";
 
 type TNewDraw = {
-  users: TCandidate[];
+  candidates: TCandidate[];
 };
 
-const NewDraw: React.FC<TNewDraw> = ({ users }: TNewDraw) => {
+const NewDraw: React.FC<TNewDraw> = ({ candidates }: TNewDraw) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleModal = () => {
@@ -24,7 +24,11 @@ const NewDraw: React.FC<TNewDraw> = ({ users }: TNewDraw) => {
       >
         New Draw
       </button>
-      <DrawModal isOpen={isOpen} handleModal={handleModal} users={users} />
+      <DrawModal
+        isOpen={isOpen}
+        handleModal={handleModal}
+        candidates={candidates}
+      />
     </>
   );
 };

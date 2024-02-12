@@ -25,4 +25,4 @@ const Candidates = ({ candidates }: TCandidates) => {
   );
 };
 
-export default Candidates;
+export { Candidates };

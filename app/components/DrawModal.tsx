@@ -7,13 +7,13 @@ import { LaunchNewDraw } from "./LaunchNewDraw";
 type TDrawModal = {
   isOpen: boolean;
   handleModal: () => void;
-  users: TCandidate[];
+  candidates: TCandidate[];
 };
 
 const DrawModal: React.FC<TDrawModal> = ({
   isOpen,
   handleModal,
-  users,
+  candidates,
 }: TDrawModal) => {
   return (
     <div
@@ -30,9 +30,9 @@ const DrawModal: React.FC<TDrawModal> = ({
             X
           </button>
         </div>
-        <h1 className="text-2xl font-bold text-center">Users remaining</h1>
-        <RemainingUsers users={users} />
-        <LaunchNewDraw users={users} />
+        <h1 className="text-2xl font-bold text-center">Candidates remaining</h1>
+        <RemainingUsers users={candidates} />
+        <LaunchNewDraw users={candidates} />
       </div>
     </div>
   );
