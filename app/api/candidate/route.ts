@@ -31,6 +31,7 @@ export const DELETE = async (req: Request) => {
     await prisma.candidate.delete({
       where: {
         id: Number(body.id),
+        ipAddress: body.ipAddress,
       },
     });
 
