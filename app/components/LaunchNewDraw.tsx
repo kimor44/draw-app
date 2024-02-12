@@ -7,15 +7,16 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 export type TLaunchNewDraw = {
-  users: TCandidate[];
+  candidates: TCandidate[];
 };
 
-const LaunchNewDraw = ({ users }: TLaunchNewDraw) => {
+const LaunchNewDraw = ({ candidates }: TLaunchNewDraw) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const launchDraw = () => {
     startTransition(async () => {
-      const randomUser: TCandidate = users[getRandomInt(0, users.length - 1)];
+      const randomUser: TCandidate =
+        candidates[getRandomInt(0, candidates.length - 1)];
       waiting(2000);
 
       try {

@@ -32,7 +32,7 @@ const DrawModal: React.FC<TDrawModal> = ({
         </div>
         <h1 className="text-2xl font-bold text-center">Candidates remaining</h1>
         <RemainingCandidates candidates={candidates} />
-        <LaunchNewDraw users={candidates} />
+        <LaunchNewDraw candidates={candidates} />
       </div>
     </div>
   );
