@@ -1,6 +1,6 @@
 "use client";
 
-import UserLine from "@/app/components/user_line";
+import { CandidateLine } from "@/app/features/home/CandidateLine";
 
 export type TCandidate = {
   id: number;
@@ -19,7 +19,9 @@ const Candidates = ({ candidates }: TCandidates) => {
   return (
     <ul className="flex flex-col gap-4 w-40">
       {Object.values(candidates)?.map((candidate) => {
-        return <UserLine key={candidate?.id.toString()} user={candidate} />;
+        return (
+          <CandidateLine key={candidate?.id.toString()} candidate={candidate} />
+        );
       })}
     </ul>
   );
