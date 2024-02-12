@@ -9,21 +9,6 @@ export async function getUsers() {
   return users;
 }
 
-export const toggleRemainingUser = async (id: number) => {
-  const prisma = new PrismaClient();
-  const user = await prisma.user.update({
-    where: {
-      id: id,
-    },
-    data: {
-      isRemaining: false,
-      UpdatedAt: new Date(),
-    },
-  });
-
-  return user;
-};
-
 export const deleteCandidate = async () => {
   const prisma = new PrismaClient();
 

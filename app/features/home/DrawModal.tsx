@@ -1,8 +1,8 @@
 "use client";
 
 import { TCandidate } from "@/app/features/home/Candidates";
-import { RemainingCandidates } from "./RemainingCandidates";
-import { LaunchNewDraw } from "../../components/LaunchNewDraw";
+import { RemainingCandidates } from "@/app/features/home/RemainingCandidates";
+import { LaunchNewDraw } from "@/app/features/home/LaunchNewDraw";
 
 type TDrawModal = {
   isOpen: boolean;

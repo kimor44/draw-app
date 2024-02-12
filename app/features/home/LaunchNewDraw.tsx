@@ -2,7 +2,7 @@
 import { TCandidate } from "@/app/features/home/Candidates";
 import { getRandomInt } from "@/app/lib/utils/getRandomInt";
 import { waiting } from "@/app/lib/utils/waiting";
-import { toggleRemainingUser } from "@/app/src/actions/users";
+import { toggleCandidate } from "@/app/src/actions/candidate/toggleCandidate";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
@@ -15,16 +15,16 @@ const LaunchNewDraw = ({ candidates }: TLaunchNewDraw) => {
   const [isPending, startTransition] = useTransition();
   const launchDraw = () => {
     startTransition(async () => {
-      const randomUser: TCandidate =
+      const randomCandidate: TCandidate =
         candidates[getRandomInt(0, candidates.length - 1)];
       waiting(2000);
 
       try {
-        await toggleRemainingUser(randomUser.id);
+        await toggleCandidate(randomCandidate.id);
 
         router.refresh();
       } catch (error) {
-        throw new Error(`L'utilisateur n'a pas été modifié : ${error}`);
+        throw new Error(`The candidata wasn't updated : ${error}`);
       }
     });
   };
