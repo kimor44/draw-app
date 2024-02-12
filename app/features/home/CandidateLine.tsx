@@ -41,13 +41,7 @@ const CandidateLine: React.FC<TCandidateLine> = ({
       key={candidate?.id.toString()}
       className="flex justify-between items-center w-full"
     >
-      <Link
-        className={classes}
-        href={{
-          pathname: "/candidates",
-          query: { id: candidate?.id },
-        }}
-      >
+      <Link className={classes} href={`/candidates/${candidate?.id}`}>
         {candidate?.name}
       </Link>
       <button

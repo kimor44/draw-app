@@ -1,3 +1,5 @@
+"use server";
+
 import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import { PrismaClient } from "@prisma/client";
 
