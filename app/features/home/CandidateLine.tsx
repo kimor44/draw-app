@@ -32,9 +32,13 @@ const CandidateLine: React.FC<TCandidateLine> = ({
     });
   };
 
-  const classes = candidate.isRemaining
+  let classes = candidate.isRemaining
     ? "text-green-500"
     : "text-slate-400 line-through";
+
+  if (isPending) {
+    classes += " opacity-75 text-slate-400 line-through";
+  }
 
   return (
     <li
@@ -45,11 +49,11 @@ const CandidateLine: React.FC<TCandidateLine> = ({
         {candidate?.name}
       </Link>
       <button
-        className="text-red-600 disabled:text-red-300 px-2 py-1 bg-slate-700 disabled:bg-slate-300 border border-red-600 rounded-lg font-bold disabled:opacity-75"
+        className="px-2 py-1 text-red-600 disabled:text-red-200 font-bold disabled:opacity-75"
         onClick={deleteCandidate}
         disabled={isPending}
       >
-        X
+        x
       </button>
     </li>
   );
