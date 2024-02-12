@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const ErrorBoundary = ({
   error,
   reset,
@@ -11,6 +13,11 @@ const ErrorBoundary = ({
     <div>
       <h2>Something went wrong</h2>
       <p>{error.message}</p>
+      <p>
+        <Link className="cursor-pointer underline" href="/">
+          Back to Home
+        </Link>
+      </p>
     </div>
   );
 };
