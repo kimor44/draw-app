@@ -8,7 +8,7 @@ export const toggleCandidate = async (id: number) => {
   const candidate = await prisma.candidate.update({
     where: {
       id: id,
-      ipAddress: getIpAddress(),
+      ipAddress: await getIpAddress(),
     },
     data: {
       isRemaining: false,

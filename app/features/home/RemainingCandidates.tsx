@@ -13,7 +13,10 @@ const RemainingCandidates: React.FC<TRemainingCandidates> = ({
     <ul className="flex flex-col gap-4 w-full">
       {Object.values(candidates)?.map((candidate) => {
         return (
-          <li key={candidate?.id.toString()} className="text-center">
+          <li
+            key={candidate?.id.toString()}
+            className="text-center dark:text-black"
+          >
             {candidate?.name}
           </li>
         );

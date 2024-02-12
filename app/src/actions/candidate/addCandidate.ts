@@ -1,12 +1,11 @@
 "use server";
 
-import { getIpAddress2 } from "@/app/lib/utils/getIpAddress";
+import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import { revalidatePath } from "next/cache";
 
 export const addCandidate = async (formData: FormData) => {
   const name = String(formData.get("name"));
-
-  const ipAddress = await getIpAddress2();
+  const ipAddress = await getIpAddress();
 
   try {
     const newCandidate = await fetch("http://localhost:3000/api/candidate", {
