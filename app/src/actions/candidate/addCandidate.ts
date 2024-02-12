@@ -9,7 +9,7 @@ export const addCandidate = async (formData: FormData) => {
   try {
     await fetch("http://localhost:3000/api/candidate", {
       method: "POST",
-      body: JSON.stringify({ name: name, ipAdress: getIpAddress() }),
+      body: JSON.stringify({ name: name, ipAddress: getIpAddress() }),
     });
 
     revalidatePath("/");
