@@ -1,8 +1,8 @@
 "use client";
 
 import { TCandidate } from "@/app/features/home/Candidates";
-import { RemainingUsers } from "./RemainingUsers";
-import { LaunchNewDraw } from "./LaunchNewDraw";
+import { RemainingCandidates } from "./RemainingCandidates";
+import { LaunchNewDraw } from "../../components/LaunchNewDraw";
 
 type TDrawModal = {
   isOpen: boolean;
@@ -31,7 +31,7 @@ const DrawModal: React.FC<TDrawModal> = ({
           </button>
         </div>
         <h1 className="text-2xl font-bold text-center">Candidates remaining</h1>
-        <RemainingUsers users={candidates} />
+        <RemainingCandidates candidates={candidates} />
         <LaunchNewDraw users={candidates} />
       </div>
     </div>
