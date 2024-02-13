@@ -1,6 +1,5 @@
 "use server";
 
-import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import { PrismaClient } from "@prisma/client";
 
 export const toggleCandidate = async (id: number) => {
@@ -8,7 +7,6 @@ export const toggleCandidate = async (id: number) => {
   const candidate = await prisma.candidate.update({
     where: {
       id: id,
-      ipAddress: await getIpAddress(),
     },
     data: {
       isRemaining: false,

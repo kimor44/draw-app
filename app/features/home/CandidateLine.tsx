@@ -1,5 +1,4 @@
 import { TCandidate } from "@/app/features/home/Candidates";
-import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -18,12 +17,11 @@ const CandidateLine: React.FC<TCandidateLine> = ({
     startTransition(async () => {
       e.preventDefault();
       const id = candidate.id;
-      const ipAddress = await getIpAddress();
 
       try {
         await fetch("http://localhost:3000/api/candidate", {
           method: "DELETE",
-          body: JSON.stringify({ id: id, ipAddress: ipAddress }),
+          body: JSON.stringify({ id: id }),
         });
 
         router.refresh();
