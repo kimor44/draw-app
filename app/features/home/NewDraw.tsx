@@ -20,7 +20,8 @@ const NewDraw: React.FC<TNewDraw> = ({ candidates }: TNewDraw) => {
       <button
         type="submit"
         onClick={handleModal}
-        className="bg-green-500 text-white rounded px-4 py-2"
+        className="bg-green-500 text-white rounded px-4 py-2 disabled:bg-green-900 disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={candidates.length === 0}
       >
         New Draw
       </button>
