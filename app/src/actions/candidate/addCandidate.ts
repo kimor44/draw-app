@@ -5,8 +5,10 @@ import { revalidatePath } from "next/cache";
 export const addCandidate = async (formData: FormData) => {
   const name = String(formData.get("name"));
 
+  const apiUrl = process.env.API_URL;
+
   try {
-    const newCandidate = await fetch("http://localhost:3000/api/candidate", {
+    const newCandidate = await fetch(`${apiUrl}/api/candidate`, {
       method: "POST",
       body: JSON.stringify({ name: name }),
     });

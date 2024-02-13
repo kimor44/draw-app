@@ -16,10 +16,11 @@ const CandidateLine: React.FC<TCandidateLine> = ({
   const deleteCandidate = (e: React.MouseEvent<HTMLElement>) => {
     startTransition(async () => {
       e.preventDefault();
+      const apiUrl = process.env.API_URL;
       const id = candidate.id;
 
       try {
-        await fetch("http://localhost:3000/api/candidate", {
+        await fetch(`${apiUrl}/api/candidate`, {
           method: "DELETE",
           body: JSON.stringify({ id: id }),
         });
