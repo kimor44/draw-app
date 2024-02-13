@@ -7,6 +7,8 @@ export const addCandidate = async (formData: FormData) => {
 
   const apiUrl = process.env.API_URL;
 
+  console.log("api_url : ", apiUrl);
+
   try {
     const newCandidate = await fetch(`${apiUrl}/api/candidate`, {
       method: "POST",
