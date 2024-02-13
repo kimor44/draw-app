@@ -16,8 +16,11 @@ const CandidateLine: React.FC<TCandidateLine> = ({
   const deleteCandidate = (e: React.MouseEvent<HTMLElement>) => {
     startTransition(async () => {
       e.preventDefault();
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      console.log("api_url : ", apiUrl);
       const id = candidate.id;
+
+      console.log({ apiUrl, id });
 
       try {
         await fetch(`${apiUrl}/api/candidate`, {
