@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 
 export const toggleCandidate = async (id: number) => {
   const prisma = new PrismaClient();
-  const sessionID = getSessionId();
+  const sessionID = await getSessionId();
 
   const candidate = await prisma.candidate.update({
     where: {

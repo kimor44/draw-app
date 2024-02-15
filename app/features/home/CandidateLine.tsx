@@ -19,7 +19,7 @@ const CandidateLine: React.FC<TCandidateLine> = ({
       e.preventDefault();
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const id = candidate.id;
-      const sessionID = getSessionId();
+      const sessionID = await getSessionId();
 
       try {
         await fetch(`${apiUrl}/api/candidate`, {

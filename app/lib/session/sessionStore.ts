@@ -2,16 +2,16 @@
 import { kv } from "@vercel/kv";
 import { getSessionId, getSessionIdAndCreateIfMissing } from "./sessionIdModel";
 
-export const get = (key: string, namespace: string = "") => {
-  const sessionId = getSessionId();
+export const get = async (key: string, namespace: string = "") => {
+  const sessionId = await getSessionId();
   if (!sessionId) {
     return null;
   }
   return kv.hget(`session-${namespace}-${sessionId}`, key);
 };
 
-export const getAll = (namespace: string = "") => {
-  const sessionId = getSessionId();
+export const getAll = async (namespace: string = "") => {
+  const sessionId = await getSessionId();
   if (!sessionId) {
     return null;
   }
