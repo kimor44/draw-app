@@ -1,16 +1,16 @@
 "use server";
 
-import { getIpAddress } from "@/app/lib/utils/getIpAddress";
+import { getSessionIdAndCreateIfMissing } from "@/app/lib/session/sessionIdModel";
 import { PrismaClient } from "@prisma/client";
 
 export const deleteAllCandidates = async () => {
-  const ipAddress = await getIpAddress();
+  const sessionID = getSessionIdAndCreateIfMissing();
   try {
     const prisma = new PrismaClient();
 
     await prisma.candidate.deleteMany({
       where: {
-        ipAddress,
+        sessionID,
       },
     });
   } catch (error) {

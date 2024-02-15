@@ -1,12 +1,10 @@
 "use server";
 
 import { getSessionIdAndCreateIfMissing } from "@/app/lib/session/sessionIdModel";
-import { getIpAddress } from "@/app/lib/utils/getIpAddress";
 import { revalidatePath } from "next/cache";
 
 export const addCandidate = async (formData: FormData) => {
   const name = String(formData.get("name"));
-  const ipAddress = await getIpAddress();
   const sessionID = getSessionIdAndCreateIfMissing();
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -14,7 +12,7 @@ export const addCandidate = async (formData: FormData) => {
   try {
     const newCandidate = await fetch(`${apiUrl}/api/candidate`, {
       method: "POST",
-      body: JSON.stringify({ name, ipAddress, sessionID }),
+      body: JSON.stringify({ name, sessionID }),
     });
 
     if (!newCandidate.ok) {

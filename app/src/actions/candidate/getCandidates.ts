@@ -1,15 +1,15 @@
 "use server";
 
-import { getIpAddress } from "@/app/lib/utils/getIpAddress";
+import { getSessionIdAndCreateIfMissing } from "@/app/lib/session/sessionIdModel";
 import { PrismaClient } from "@prisma/client";
 
 export async function getCandidates() {
   const prisma = new PrismaClient();
-  const ipAddress = await getIpAddress();
+  const sessionID = getSessionIdAndCreateIfMissing();
 
   const candidates = await prisma.candidate.findMany({
     where: {
-      ipAddress,
+      sessionID,
     },
     orderBy: [
       {

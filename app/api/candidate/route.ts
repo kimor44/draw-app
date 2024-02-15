@@ -10,7 +10,6 @@ export const POST = async (req: Request, res: Response) => {
     const user = await prisma.candidate.create({
       data: {
         name: body.name,
-        ipAddress: body.ipAddress,
         sessionID: body.sessionID,
       },
     });
@@ -32,7 +31,6 @@ export const DELETE = async (req: Request) => {
     await prisma.candidate.delete({
       where: {
         id: Number(body.id),
-        ipAddress: body.ipAddress,
       },
     });
 

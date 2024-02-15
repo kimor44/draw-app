@@ -6,7 +6,6 @@ export type TCandidate = {
   id: number;
   name: string;
   isRemaining: boolean;
-  ipAddress: string;
   createdAt: Date;
   updatedAt?: Date;
 };

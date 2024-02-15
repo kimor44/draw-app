@@ -1,5 +1,5 @@
 import { TCandidate } from "@/app/features/home/Candidates";
-import { getIpAddress } from "@/app/lib/utils/getIpAddress";
+import { getSessionId } from "@/app/lib/session/sessionIdModel";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -19,12 +19,12 @@ const CandidateLine: React.FC<TCandidateLine> = ({
       e.preventDefault();
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const id = candidate.id;
-      const ipAddress = await getIpAddress();
+      const sessionID = getSessionId();
 
       try {
         await fetch(`${apiUrl}/api/candidate`, {
           method: "DELETE",
-          body: JSON.stringify({ id, ipAddress }),
+          body: JSON.stringify({ id, sessionID }),
         });
 
         router.refresh();
