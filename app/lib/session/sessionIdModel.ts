@@ -14,10 +14,10 @@ const setSessionId = async (sessionId: SessionId) => {
 };
 
 export const getSessionIdAndCreateIfMissing = async () => {
-  const sessionId = getSessionId();
+  const sessionId = await getSessionId();
   if (!sessionId) {
     const newSessionId = crypto.randomUUID();
-    setSessionId(newSessionId);
+    await setSessionId(newSessionId);
 
     return newSessionId;
   }
