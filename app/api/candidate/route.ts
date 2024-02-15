@@ -11,6 +11,7 @@ export const POST = async (req: Request, res: Response) => {
       data: {
         name: body.name,
         ipAddress: body.ipAddress,
+        sessionID: body.sessionID,
       },
     });
 
