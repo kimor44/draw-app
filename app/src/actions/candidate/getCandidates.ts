@@ -7,6 +7,8 @@ export async function getCandidates() {
   const prisma = new PrismaClient();
   const sessionID = getSessionIdAndCreateIfMissing();
 
+  console.log("sessionID", sessionID);
+
   const candidates = await prisma.candidate.findMany({
     where: {
       sessionID,
