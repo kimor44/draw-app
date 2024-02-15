@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 export const addCandidate = async (formData: FormData) => {
   const name = String(formData.get("name"));
-  const sessionID = getSessionIdAndCreateIfMissing();
+  const sessionID = await getSessionIdAndCreateIfMissing();
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 

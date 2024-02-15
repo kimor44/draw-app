@@ -5,9 +5,7 @@ import { PrismaClient } from "@prisma/client";
 
 export async function getCandidates() {
   const prisma = new PrismaClient();
-  const sessionID = getSessionIdAndCreateIfMissing();
-
-  console.log("sessionID", sessionID);
+  const sessionID = await getSessionIdAndCreateIfMissing();
 
   const candidates = await prisma.candidate.findMany({
     where: {

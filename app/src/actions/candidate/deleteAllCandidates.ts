@@ -4,7 +4,7 @@ import { getSessionIdAndCreateIfMissing } from "@/app/lib/session/sessionIdModel
 import { PrismaClient } from "@prisma/client";
 
 export const deleteAllCandidates = async () => {
-  const sessionID = getSessionIdAndCreateIfMissing();
+  const sessionID = await getSessionIdAndCreateIfMissing();
   try {
     const prisma = new PrismaClient();
 
