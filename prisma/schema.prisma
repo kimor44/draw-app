@@ -15,16 +15,9 @@ model Candidate {
   id            Int       @id @default(autoincrement())
   name          String    @db.VarChar(200)
   isRemaining   Boolean   @default(true)
-  ipAddress     String    @default("0.0.0.0")
   sessionID     String?   @db.VarChar(255)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @default(now())
 
   @@unique([name, sessionID])
-}
-
-model Session {
-  id          Int       @id @default(autoincrement())
-  session     String    @db.VarChar(255)
-  createdAt   DateTime  @default(now())
 }
