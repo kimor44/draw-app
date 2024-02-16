@@ -3,7 +3,11 @@
 import { addCandidateAction } from "@/app/src/actions/candidate/addCandidateAction";
 import { useRouter } from "next/navigation";
 
-const NewCandidate = () => {
+type TNewCandidate = {
+  onActionChange: () => void;
+};
+
+const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
   const router = useRouter();
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (
     event: React.FormEvent<HTMLFormElement>
@@ -12,7 +16,11 @@ const NewCandidate = () => {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    await addCandidateAction(formData);
+    const candidate = await addCandidateAction(formData);
+
+    if (!candidate) return;
+
+    onAddCandidate();
 
     router.refresh();
     form.reset();
