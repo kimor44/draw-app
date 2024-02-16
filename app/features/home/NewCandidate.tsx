@@ -1,10 +1,25 @@
 "use client";
 
-import { addCandidate } from "@/app/src/actions/candidate/addCandidate";
+import { addCandidateAction } from "@/app/src/actions/candidate/addCandidateAction";
+import { useRouter } from "next/navigation";
 
 const NewCandidate = () => {
+  const router = useRouter();
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    await addCandidateAction(formData);
+
+    router.refresh();
+    form.reset();
+    form.focus();
+  };
   return (
-    <form action={addCandidate} className="flex gap-4">
+    <form onSubmit={onSubmit} className="flex gap-4">
       <input
         className="text-black p-3 rounded-lg"
         type="text"
