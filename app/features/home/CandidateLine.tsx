@@ -1,5 +1,5 @@
 import { TCandidate } from "@/app/features/home/Candidates";
-import { getSessionId } from "@/app/lib/session/sessionIdModel";
+import { deleteCandidateAction } from "@/app/src/actions/candidate/deleteCandidateAction";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -17,20 +17,10 @@ const CandidateLine: React.FC<TCandidateLine> = ({
   const deleteCandidate = (e: React.MouseEvent<HTMLElement>) => {
     startTransition(async () => {
       e.preventDefault();
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-      const id = candidate.id;
-      const sessionID = await getSessionId();
+      const id = Number(candidate.id);
+      await deleteCandidateAction(id);
 
-      try {
-        await fetch(`${apiUrl}/api/candidate`, {
-          method: "DELETE",
-          body: JSON.stringify({ id, sessionID }),
-        });
-
-        router.refresh();
-      } catch (error) {
-        throw new Error(`impossible de supprimer un utilisateur : ${error}`);
-      }
+      router.refresh();
     });
   };
 
