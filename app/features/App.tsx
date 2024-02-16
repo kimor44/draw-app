@@ -44,13 +44,19 @@ export const App = () => {
   };
 
   return (
-    <>
+    <main className="flex h-full flex-col items-center gap-10 p-12">
       <Link href="/draw">Draw</Link>
-      <DeleteAllCandidates />
-      <Candidates candidates={copiedCandidates} />
+      <DeleteAllCandidates onActionChange={onActionChange} />
+      <Candidates
+        candidates={copiedCandidates}
+        onActionChange={onActionChange}
+      />
       <NewCandidate onActionChange={onActionChange} />
-      <NewDraw candidates={filteredCandidates} />
+      <NewDraw
+        candidates={filteredCandidates}
+        onActionChange={onActionChange}
+      />
       <div className="h-48"></div>
-    </>
+    </main>
   );
 };

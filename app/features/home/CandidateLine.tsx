@@ -6,10 +6,12 @@ import { useTransition } from "react";
 
 type TCandidateLine = {
   candidate: TCandidate;
+  onActionChange: () => void;
 };
 
 const CandidateLine: React.FC<TCandidateLine> = ({
   candidate,
+  onActionChange,
 }: TCandidateLine) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -19,6 +21,8 @@ const CandidateLine: React.FC<TCandidateLine> = ({
       e.preventDefault();
       const id = Number(candidate.id);
       await deleteCandidateAction(id);
+
+      onActionChange();
 
       router.refresh();
     });

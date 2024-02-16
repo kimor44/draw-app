@@ -12,14 +12,19 @@ export type TCandidate = {
 
 type TCandidates = {
   candidates: TCandidate[];
+  onActionChange: () => void;
 };
 
-const Candidates = ({ candidates }: TCandidates) => {
+const Candidates = ({ candidates, onActionChange }: TCandidates) => {
   return (
     <ul className="flex flex-col gap-4 w-40">
       {Object.values(candidates)?.map((candidate) => {
         return (
-          <CandidateLine key={candidate?.id.toString()} candidate={candidate} />
+          <CandidateLine
+            key={candidate?.id.toString()}
+            candidate={candidate}
+            onActionChange={onActionChange}
+          />
         );
       })}
     </ul>

@@ -8,12 +8,14 @@ type TDrawModal = {
   isOpen: boolean;
   handleModal: () => void;
   candidates: TCandidate[];
+  onActionChange: () => void;
 };
 
 const DrawModal: React.FC<TDrawModal> = ({
   isOpen,
   handleModal,
   candidates,
+  onActionChange,
 }: TDrawModal) => {
   return (
     <div
@@ -34,7 +36,10 @@ const DrawModal: React.FC<TDrawModal> = ({
           Candidates remaining
         </h1>
         <RemainingCandidates candidates={candidates} />
-        <LaunchNewDraw candidates={candidates} />
+        <LaunchNewDraw
+          candidates={candidates}
+          onActionChange={onActionChange}
+        />
       </div>
     </div>
   );

@@ -8,9 +8,10 @@ import { useTransition } from "react";
 
 export type TLaunchNewDraw = {
   candidates: TCandidate[];
+  onActionChange: () => void;
 };
 
-const LaunchNewDraw = ({ candidates }: TLaunchNewDraw) => {
+const LaunchNewDraw = ({ candidates, onActionChange }: TLaunchNewDraw) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const launchDraw = () => {
@@ -20,6 +21,8 @@ const LaunchNewDraw = ({ candidates }: TLaunchNewDraw) => {
       waiting(2000);
 
       await toggleCandidateAction(randomCandidate.id);
+
+      onActionChange();
       router.refresh();
     });
   };

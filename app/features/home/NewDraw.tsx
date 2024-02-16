@@ -6,9 +6,13 @@ import { TCandidate } from "@/app/features/home/Candidates";
 
 type TNewDraw = {
   candidates: TCandidate[];
+  onActionChange: () => void;
 };
 
-const NewDraw: React.FC<TNewDraw> = ({ candidates }: TNewDraw) => {
+const NewDraw: React.FC<TNewDraw> = ({
+  candidates,
+  onActionChange,
+}: TNewDraw) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleModal = () => {
@@ -29,6 +33,7 @@ const NewDraw: React.FC<TNewDraw> = ({ candidates }: TNewDraw) => {
         isOpen={isOpen}
         handleModal={handleModal}
         candidates={candidates}
+        onActionChange={onActionChange}
       />
     </>
   );

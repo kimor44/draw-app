@@ -3,7 +3,11 @@ import { deleteAllCandidatesAction } from "@/app/src/actions/candidate/deleteAll
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
-const DeleteAllCandidates = () => {
+type TDeleteAllCandidates = {
+  onActionChange: () => void;
+};
+
+const DeleteAllCandidates = ({ onActionChange }: TDeleteAllCandidates) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -11,6 +15,8 @@ const DeleteAllCandidates = () => {
     startTransition(async () => {
       e.preventDefault();
       deleteAllCandidatesAction();
+
+      onActionChange();
 
       router.refresh();
     });
