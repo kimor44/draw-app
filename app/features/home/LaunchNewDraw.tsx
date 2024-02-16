@@ -2,7 +2,7 @@
 import { TCandidate } from "@/app/features/home/Candidates";
 import { getRandomInt } from "@/app/lib/utils/getRandomInt";
 import { waiting } from "@/app/lib/utils/waiting";
-import { toggleCandidate } from "@/app/src/actions/candidate/toggleCandidate";
+import { toggleCandidateAction } from "@/app/src/actions/candidate/toggleCandidateAction";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
@@ -19,13 +19,8 @@ const LaunchNewDraw = ({ candidates }: TLaunchNewDraw) => {
         candidates[getRandomInt(0, candidates.length - 1)];
       waiting(2000);
 
-      try {
-        await toggleCandidate(randomCandidate.id);
-
-        router.refresh();
-      } catch (error) {
-        throw new Error(`The candidata wasn't updated : ${error}`);
-      }
+      await toggleCandidateAction(randomCandidate.id);
+      router.refresh();
     });
   };
 
