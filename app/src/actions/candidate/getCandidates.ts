@@ -1,5 +1,4 @@
 "use server";
-
 import { PrismaClient } from "@prisma/client";
 // import { cookies } from "next/headers";
 
@@ -16,9 +15,6 @@ export const getCandidates = async () => {
   const prisma = new PrismaClient();
 
   const candidates = await prisma.candidate.findMany({
-    where: {
-      // sessionID: sessionID?.value,
-    },
     orderBy: [
       {
         isRemaining: "desc",

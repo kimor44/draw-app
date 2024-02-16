@@ -20,10 +20,12 @@ export const addCandidateAction = async (formData: FormData) => {
 
   const prisma = new PrismaClient();
 
-  await prisma.candidate.create({
+  const candidates = await prisma.candidate.create({
     data: {
       name: name as string,
       sessionID: sessionID?.value,
     },
   });
+
+  return candidates;
 };
