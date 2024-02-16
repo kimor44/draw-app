@@ -1,10 +1,17 @@
 "use server";
 
-import { getSessionId } from "@/app/lib/session/getSessionId";
 import { PrismaClient } from "@prisma/client";
+import { cookies } from "next/headers";
 
 export const getCandidates = async () => {
-  const sessionID = await getSessionId();
+  let sessionID = cookies().get("session-id");
+
+  if (!sessionID) {
+    const newSessionId = crypto.randomUUID();
+    const newCookie = { name: "session-id", value: newSessionId };
+    cookies().set(newCookie);
+    sessionID = cookies().get("session-id");
+  }
 
   const prisma = new PrismaClient();
 

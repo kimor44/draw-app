@@ -1,5 +1,5 @@
 "use client";
-import { deleteAllCandidates } from "@/app/src/actions/candidate/deleteAllCandidates";
+import { deleteAllCandidatesAction } from "@/app/src/actions/candidate/deleteAllCandidatesAction";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
@@ -10,7 +10,7 @@ const DeleteAllCandidates = () => {
   const deleteAll = (e: React.MouseEvent<HTMLElement>) => {
     startTransition(async () => {
       e.preventDefault();
-      deleteAllCandidates();
+      deleteAllCandidatesAction();
 
       router.refresh();
     });

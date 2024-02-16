@@ -3,7 +3,7 @@
 import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
 
-export const deleteCandidateAction = async (id: number) => {
+export const deleteAllCandidatesAction = async () => {
   let sessionID = cookies().get("session-id");
 
   if (!sessionID) {
@@ -15,9 +15,8 @@ export const deleteCandidateAction = async (id: number) => {
 
   const prisma = new PrismaClient();
 
-  await prisma.candidate.delete({
+  await prisma.candidate.deleteMany({
     where: {
-      id,
       sessionID: sessionID?.value,
     },
   });
