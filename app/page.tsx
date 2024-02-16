@@ -5,14 +5,10 @@ import { NewCandidate } from "@/app/features/home/NewCandidate";
 import { NewDraw } from "@/app/features/home/NewDraw";
 import { filteredCandidatesByRemaining } from "@/app/lib/utils/filterCandidatesByRemaining";
 import { DeleteAllCandidates } from "./features/home/DeleteAllCandidates";
-import { getSessionIdAndCreateIfMissing } from "./lib/session/sessionIdModel";
 
 export default async function Home() {
-  await getSessionIdAndCreateIfMissing();
   const candidates = await getCandidates();
-
   const copiedCandidates: TCandidate[] = [...candidates];
-
   const filteredCandidates = filteredCandidatesByRemaining(copiedCandidates);
 
   return (

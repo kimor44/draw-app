@@ -1,15 +1,16 @@
 "use server";
 
-import { getSessionIdAndCreateIfMissing } from "@/app/lib/session/sessionIdModel";
+import { getSessionId } from "@/app/lib/session/getSessionId";
 import { PrismaClient } from "@prisma/client";
 
-export async function getCandidates() {
+export const getCandidates = async () => {
+  const sessionID = await getSessionId();
+
   const prisma = new PrismaClient();
-  const sessionID = await getSessionIdAndCreateIfMissing();
 
   const candidates = await prisma.candidate.findMany({
     where: {
-      sessionID,
+      sessionID: sessionID?.value,
     },
     orderBy: [
       {
@@ -22,4 +23,4 @@ export async function getCandidates() {
   });
 
   return candidates;
-}
+};
