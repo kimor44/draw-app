@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/app/lib/prisma/_base";
 
 export const getCandidateInformation = async (id: number) => {
-  const prisma = new PrismaClient();
-
   try {
     const candidate = await prisma.candidate.findUnique({
       where: {

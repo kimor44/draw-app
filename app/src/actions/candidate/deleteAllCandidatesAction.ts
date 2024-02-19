@@ -1,6 +1,6 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
 export const deleteAllCandidatesAction = async () => {
@@ -12,8 +12,6 @@ export const deleteAllCandidatesAction = async () => {
     cookies().set(newCookie);
     sessionID = cookies().get("session-id");
   }
-
-  const prisma = new PrismaClient();
 
   await prisma.candidate.deleteMany({
     where: {

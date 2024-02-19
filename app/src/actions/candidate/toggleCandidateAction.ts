@@ -1,5 +1,5 @@
 "use server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
 export const toggleCandidateAction = async (id: number) => {
@@ -12,7 +12,6 @@ export const toggleCandidateAction = async (id: number) => {
     sessionID = cookies().get("session-id");
   }
 
-  const prisma = new PrismaClient();
   await prisma.candidate.update({
     where: {
       id,

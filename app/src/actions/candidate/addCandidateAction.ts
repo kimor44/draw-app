@@ -1,5 +1,5 @@
 "use server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
 export const addCandidateAction = async (formData: FormData) => {
@@ -17,8 +17,6 @@ export const addCandidateAction = async (formData: FormData) => {
   if (!name) {
     return;
   }
-
-  const prisma = new PrismaClient();
 
   const candidates = await prisma.candidate.create({
     data: {
