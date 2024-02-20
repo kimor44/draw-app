@@ -18,12 +18,11 @@ const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
     const formData = new FormData(form);
 
     const candidate = await addCandidateAction(formData);
-    console.log("candidate", candidate.error);
 
     if (candidate.error) {
-      toast.error(candidate.error, {
-        position: "top-center",
-      });
+      toast.error(candidate.error);
+      form.reset();
+      form.focus();
       return;
     }
 

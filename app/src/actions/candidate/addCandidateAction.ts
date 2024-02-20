@@ -18,12 +18,16 @@ export const addCandidateAction = async (formData: FormData) => {
     return { error: "Name is required" };
   }
 
-  await prisma.candidate.create({
-    data: {
-      name: name as string,
-      sessionID: sessionID?.value,
-    },
-  });
+  try {
+    const newCandidate = await prisma.candidate.create({
+      data: {
+        name: name as string,
+        sessionID: sessionID?.value,
+      },
+    });
 
-  return { message: "Candidate added successfully" };
+    return { message: `"${newCandidate.name}" added successfully` };
+  } catch (error) {
+    return { error: "Candidates must be unique" };
+  }
 };
