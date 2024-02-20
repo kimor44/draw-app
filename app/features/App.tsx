@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Candidates, TCandidate } from "./home/Candidates";
-import { DeleteAllCandidates } from "./home/DeleteAllCandidates";
-import { NewCandidate } from "./home/NewCandidate";
-import { NewDraw } from "./home/NewDraw";
+import { Candidates, TCandidate } from "@/app/features/home/Candidates";
+import { DeleteAllCandidates } from "@/app/features/home/DeleteAllCandidates";
+import { NewCandidate } from "@/app/features/home/NewCandidate";
+import { NewDraw } from "@/app/features/home/NewDraw";
 import { useEffect, useState } from "react";
-import { filteredCandidatesByRemaining } from "../lib/utils/filterCandidatesByRemaining";
+import { filteredCandidatesByRemaining } from "@/app/lib/utils/filterCandidatesByRemaining";
 import { toast } from "sonner";
-import { getErrorMessage } from "../lib/errors/getErrorMessage";
+import { getErrorMessage } from "@/app/lib/errors/getErrorMessage";
+import { getCandidateIds } from "@/app/lib/utils/getCandidateIds";
 
 export const App = () => {
   const [candidates, setCandidates] = useState<TCandidate[]>([]);
@@ -40,6 +41,7 @@ export const App = () => {
 
   const copiedCandidates: TCandidate[] = [...candidates];
   const filteredCandidates = filteredCandidatesByRemaining(copiedCandidates);
+  const candidatesIds = getCandidateIds(copiedCandidates);
 
   const onActionChange = () => {
     setIsRendered((cur) => !cur);
@@ -48,7 +50,10 @@ export const App = () => {
   return (
     <main className="flex h-full flex-col items-center gap-10 p-12">
       <Link href="/draw">Draw</Link>
-      <DeleteAllCandidates onActionChange={onActionChange} />
+      <DeleteAllCandidates
+        onActionChange={onActionChange}
+        ids={candidatesIds}
+      />
       <Candidates
         candidates={copiedCandidates}
         onActionChange={onActionChange}

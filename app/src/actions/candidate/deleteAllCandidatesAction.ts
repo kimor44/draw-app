@@ -4,18 +4,36 @@ import { getErrorMessage } from "@/app/lib/errors/getErrorMessage";
 import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
-export const deleteAllCandidatesAction = async () => {
+export const deleteAllCandidatesAction = async (ids: number[]) => {
+  if (!ids.length) {
+    return { warning: "No candidates to delete" };
+  }
+
   let sessionID = cookies().get("session-id");
 
   if (!sessionID) {
     return {
-      error: "Unable to delete all the candidates. Session ID not found",
+      warning: "Unable to delete all the candidates. Session ID not found",
     };
   }
 
   try {
+    const candidatesToDelete = await prisma.candidate.findMany({
+      where: {
+        id: { in: ids },
+        sessionID: sessionID?.value,
+      },
+    });
+
+    if (!candidatesToDelete.length) {
+      return {
+        warning: "Something went wrong. Unable to delete the candidates",
+      };
+    }
+
     await prisma.candidate.deleteMany({
       where: {
+        id: { in: ids },
         sessionID: sessionID?.value,
       },
     });

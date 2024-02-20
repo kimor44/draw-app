@@ -5,20 +5,26 @@ import { useTransition } from "react";
 import { toast } from "sonner";
 
 type TDeleteAllCandidates = {
+  ids: number[];
   onActionChange: () => void;
 };
 
-const DeleteAllCandidates = ({ onActionChange }: TDeleteAllCandidates) => {
+const DeleteAllCandidates = ({ onActionChange, ids }: TDeleteAllCandidates) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const deleteAll = async (e: React.MouseEvent<HTMLElement>) => {
     startTransition(async () => {
       e.preventDefault();
-      const allCandidatesDeleted = await deleteAllCandidatesAction();
+      const allCandidatesDeleted = await deleteAllCandidatesAction(ids);
 
       if (allCandidatesDeleted?.error) {
         toast.warning(allCandidatesDeleted.error);
+        return;
+      }
+
+      if (allCandidatesDeleted?.warning) {
+        toast.warning(allCandidatesDeleted.warning);
         return;
       }
 
