@@ -12,12 +12,33 @@ export const deleteCandidateAction = async (id: number) => {
     };
   }
 
-  await prisma.candidate.delete({
-    where: {
-      id,
-      sessionID: sessionID?.value,
-    },
-  });
+  try {
+    const candidateToDelete = await prisma.candidate.findUnique({
+      where: {
+        id,
+        sessionID: sessionID?.value,
+      },
+    });
 
-  return { success: "Candidate was deleted successfully" };
+    if (!candidateToDelete) {
+      return {
+        warning: "Something went wrong. Unable to delete the candidate",
+      };
+    }
+
+    await prisma.candidate.delete({
+      where: {
+        id,
+        sessionID: sessionID?.value,
+      },
+    });
+
+    return {
+      success: `"${candidateToDelete.name}" was deleted successfully !`,
+    };
+  } catch (error) {
+    return {
+      error: "Unable to delete the candidate.",
+    };
+  }
 };

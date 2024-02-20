@@ -32,6 +32,11 @@ const CandidateLine: React.FC<TCandidateLine> = ({
         return;
       }
 
+      if (deletedCandidate.warning) {
+        toast.warning(deletedCandidate.warning);
+        return;
+      }
+
       onActionChange();
 
       router.refresh();
