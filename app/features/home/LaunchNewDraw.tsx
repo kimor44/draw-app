@@ -23,19 +23,19 @@ const LaunchNewDraw = ({ candidates, onActionChange }: TLaunchNewDraw) => {
 
       const toggleCandidate = await toggleCandidateAction(randomCandidate.id);
 
-      if (!toggleCandidate) {
+      if (toggleCandidate?.error) {
         toast.warning("Unable to toggle the candidate. Session ID not found");
         return;
       }
 
-      if (toggleCandidate.error) {
-        toast.error(toggleCandidate.error);
+      if (toggleCandidate?.warning) {
+        toast.warning(toggleCandidate.warning);
         return;
       }
 
       onActionChange();
       router.refresh();
-      toast.success(toggleCandidate.success);
+      toast.success(toggleCandidate?.success);
     });
   };
 
