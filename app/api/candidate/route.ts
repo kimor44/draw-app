@@ -6,10 +6,10 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   let sessionID = req.cookies.get("session-id");
 
   if (!sessionID) {
-    return NextResponse.json({ error: "Session ID not found" });
+    return NextResponse.json([]);
   }
 
-  const users = await prisma.candidate.findMany({
+  const candidates = await prisma.candidate.findMany({
     where: {
       sessionID: sessionID?.value,
     },
@@ -23,5 +23,5 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     ],
   });
 
-  return NextResponse.json(users);
+  return NextResponse.json(candidates);
 };

@@ -15,15 +15,15 @@ export const addCandidateAction = async (formData: FormData) => {
   const name = formData.get("name");
 
   if (!name) {
-    return;
+    return { error: "Name is required" };
   }
 
-  const candidates = await prisma.candidate.create({
+  await prisma.candidate.create({
     data: {
       name: name as string,
       sessionID: sessionID?.value,
     },
   });
 
-  return candidates;
+  return { message: "Candidate added successfully" };
 };

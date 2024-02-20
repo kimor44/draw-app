@@ -9,7 +9,7 @@ export const toggleCandidateAction = async (id: number) => {
     return { error: "Unable to toggle the candidate. Session ID not found" };
   }
 
-  await prisma.candidate.update({
+  const toggleCandidate = await prisma.candidate.update({
     where: {
       id,
       sessionID: sessionID?.value,
@@ -19,4 +19,10 @@ export const toggleCandidateAction = async (id: number) => {
       updatedAt: new Date(),
     },
   });
+
+  if (toggleCandidate) {
+    return {
+      success: `${toggleCandidate.name} was removed from remaining candidates successfully`,
+    };
+  }
 };

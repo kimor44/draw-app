@@ -18,4 +18,6 @@ export const deleteCandidateAction = async (id: number) => {
       sessionID: sessionID?.value,
     },
   });
+
+  return { success: "Candidate was deleted successfully" };
 };

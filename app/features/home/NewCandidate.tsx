@@ -2,6 +2,7 @@
 
 import { addCandidateAction } from "@/app/src/actions/candidate/addCandidateAction";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 type TNewCandidate = {
   onActionChange: () => void;
@@ -17,6 +18,14 @@ const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
     const formData = new FormData(form);
 
     const candidate = await addCandidateAction(formData);
+    console.log("candidate", candidate.error);
+
+    if (candidate.error) {
+      toast.error(candidate.error, {
+        position: "top-center",
+      });
+      return;
+    }
 
     if (!candidate) return;
 
@@ -25,6 +34,7 @@ const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
     router.refresh();
     form.reset();
     form.focus();
+    toast.success(candidate.message);
   };
   return (
     <form onSubmit={onSubmit} className="flex gap-4">

@@ -2,6 +2,7 @@
 import { deleteAllCandidatesAction } from "@/app/src/actions/candidate/deleteAllCandidatesAction";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { toast } from "sonner";
 
 type TDeleteAllCandidates = {
   onActionChange: () => void;
@@ -11,10 +12,17 @@ const DeleteAllCandidates = ({ onActionChange }: TDeleteAllCandidates) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
-  const deleteAll = (e: React.MouseEvent<HTMLElement>) => {
+  const deleteAll = async (e: React.MouseEvent<HTMLElement>) => {
     startTransition(async () => {
       e.preventDefault();
-      deleteAllCandidatesAction();
+      const allCandidatesDeleted = await deleteAllCandidatesAction();
+
+      if (allCandidatesDeleted?.error) {
+        toast.warning(allCandidatesDeleted.error);
+        return;
+      }
+
+      toast.success(allCandidatesDeleted.success);
 
       onActionChange();
 

@@ -7,6 +7,8 @@ import { NewCandidate } from "./home/NewCandidate";
 import { NewDraw } from "./home/NewDraw";
 import { useEffect, useState } from "react";
 import { filteredCandidatesByRemaining } from "../lib/utils/filterCandidatesByRemaining";
+import { toast } from "sonner";
+import { getErrorMessage } from "../lib/errors/getErrorMessage";
 
 export const App = () => {
   const [candidates, setCandidates] = useState<TCandidate[]>([]);
@@ -14,7 +16,7 @@ export const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      fetch("/api/candidate", { method: "GET" }).then((res) =>
+      await fetch("/api/candidate", { method: "GET" }).then((res) =>
         res
           .json()
           .then((data) => {
@@ -24,7 +26,7 @@ export const App = () => {
             }
           })
           .catch((err) => {
-            throw new Error(err);
+            toast.error(getErrorMessage(err));
           })
       );
     };

@@ -3,6 +3,7 @@ import { deleteCandidateAction } from "@/app/src/actions/candidate/deleteCandida
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { toast } from "sonner";
 
 type TCandidateLine = {
   candidate: TCandidate;
@@ -20,11 +21,22 @@ const CandidateLine: React.FC<TCandidateLine> = ({
     startTransition(async () => {
       e.preventDefault();
       const id = Number(candidate.id);
-      await deleteCandidateAction(id);
+      const deletedCandidate = await deleteCandidateAction(id);
+
+      if (!deletedCandidate) {
+        return;
+      }
+
+      if (deletedCandidate.error) {
+        toast.error(deletedCandidate.error);
+        return;
+      }
 
       onActionChange();
 
       router.refresh();
+
+      toast.success(deletedCandidate.success);
     });
   };
 

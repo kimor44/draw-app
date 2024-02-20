@@ -5,6 +5,7 @@ import { waiting } from "@/app/lib/utils/waiting";
 import { toggleCandidateAction } from "@/app/src/actions/candidate/toggleCandidateAction";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { toast } from "sonner";
 
 export type TLaunchNewDraw = {
   candidates: TCandidate[];
@@ -20,10 +21,21 @@ const LaunchNewDraw = ({ candidates, onActionChange }: TLaunchNewDraw) => {
         candidates[getRandomInt(0, candidates.length - 1)];
       waiting(2000);
 
-      await toggleCandidateAction(randomCandidate.id);
+      const toggleCandidate = await toggleCandidateAction(randomCandidate.id);
+
+      if (!toggleCandidate) {
+        toast.warning("Unable to toggle the candidate. Session ID not found");
+        return;
+      }
+
+      if (toggleCandidate.error) {
+        toast.error(toggleCandidate.error);
+        return;
+      }
 
       onActionChange();
       router.refresh();
+      toast.success(toggleCandidate.success);
     });
   };
 

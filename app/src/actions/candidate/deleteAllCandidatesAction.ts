@@ -1,5 +1,6 @@
 "use server";
 
+import { getErrorMessage } from "@/app/lib/errors/getErrorMessage";
 import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
@@ -12,9 +13,15 @@ export const deleteAllCandidatesAction = async () => {
     };
   }
 
-  await prisma.candidate.deleteMany({
-    where: {
-      sessionID: sessionID?.value,
-    },
-  });
+  try {
+    await prisma.candidate.deleteMany({
+      where: {
+        sessionID: sessionID?.value,
+      },
+    });
+
+    return { success: "All candidates deleted successfully" };
+  } catch (error) {
+    return { error: getErrorMessage(error) };
+  }
 };
