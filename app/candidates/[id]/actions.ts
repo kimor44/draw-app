@@ -1,14 +1,20 @@
 import { prisma } from "@/app/lib/prisma/_base";
+import { cookies } from "next/headers";
 
 export const getCandidateInformation = async (id: number) => {
+  let sessionID = cookies().get("session-id");
+
+  if (!sessionID) {
+    return;
+  }
+
   try {
     const candidate = await prisma.candidate.findUnique({
       where: {
-        id: id,
+        id,
+        sessionID: sessionID?.value,
       },
     });
-
-    if (!candidate) throw new Error(`User not found`);
 
     return candidate;
   } catch (error) {

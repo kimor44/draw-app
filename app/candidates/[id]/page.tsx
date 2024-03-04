@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { getCandidateInformation } from "./actions";
+import { notFound } from "next/navigation";
 
 const Page = async ({ params }: { params: { id: number } }) => {
   const candidate = await getCandidateInformation(Number(params.id));
+
+  if (!candidate) {
+    return notFound();
+  }
 
   return (
     <div>

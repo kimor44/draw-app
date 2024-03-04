@@ -54,6 +54,7 @@ export const App = () => {
         onActionChange={onActionChange}
         ids={candidatesIds}
       />
+      {isRendered && <p>Loading...</p>}
       <Candidates
         candidates={copiedCandidates}
         onActionChange={onActionChange}
