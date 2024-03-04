@@ -50,10 +50,12 @@ export const App = () => {
   return (
     <main className="flex h-full flex-col items-center gap-10 p-12">
       <Link href="/draw">Draw</Link>
-      <DeleteAllCandidates
-        onActionChange={onActionChange}
-        ids={candidatesIds}
-      />
+      {candidates.length > 0 && (
+        <DeleteAllCandidates
+          onActionChange={onActionChange}
+          ids={candidatesIds}
+        />
+      )}
       {isRendered && <p>Loading...</p>}
       <Candidates
         candidates={copiedCandidates}
