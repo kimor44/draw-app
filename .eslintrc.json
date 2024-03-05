@@ -1,3 +1,33 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:github/recommended",
+    "plugin:import/recommended",
+    "plugin:unicorn/recommended"
+  ],
+  "plugins": ["github", "import", "unicorn"],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "array-callback-return": ["error", { "allowImplicit": true }],
+    // Unicorn
+    "unicorn/prevent-abbreviations": 0,
+    "unicorn/prefer-top-level-await": 0,
+    "unicorn/no-process-exit": 0,
+    "unicorn/no-null": 0,
+    "unicorn/consistent-function-scoping": 0,
+    "unicorn/prefer-code-point": 0,
+    "unicorn/numeric-separators-style": 0,
+    "unicorn/switch-case-braces": 0,
+    "unicorn/no-useless-undefined": 0,
+    "unicorn/no-useless-promise-resolve-reject": 0,
+    "unicorn/filename-case": 0,
+    "unicorn/no-array-reduce": 0
+  }
 }
