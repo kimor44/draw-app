@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable comma-dangle */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {

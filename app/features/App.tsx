@@ -28,7 +28,7 @@ export const App = () => {
           })
           .catch((error) => {
             toast.error(getErrorMessage(error));
-          }),
+          })
       );
     };
 
