@@ -26,9 +26,9 @@ export const App = () => {
               setIsRendered(false);
             }
           })
-          .catch((err) => {
-            toast.error(getErrorMessage(err));
-          })
+          .catch((error) => {
+            toast.error(getErrorMessage(error));
+          }),
       );
     };
 

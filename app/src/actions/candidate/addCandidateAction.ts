@@ -32,7 +32,7 @@ export const addCandidateAction = async (formData: FormData) => {
 
   const name = String(formData.get("name"));
 
-  const newName: TAddCandidateAction = CandidateSchema.parse({ name: name });
+  const newName: TAddCandidateAction = CandidateSchema.parse({ name });
 
   if (!newName.name) {
     return { error: "Name is required" };
@@ -47,7 +47,7 @@ export const addCandidateAction = async (formData: FormData) => {
     });
 
     return { message: `"${newCandidate.name}" added successfully` };
-  } catch (error) {
+  } catch {
     return { error: "Candidates must be unique" };
   }
 };

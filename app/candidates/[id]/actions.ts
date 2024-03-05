@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
 export const getCandidateInformation = async (id: number) => {
-  let sessionID = cookies().get("session-id");
+  const sessionID = cookies().get("session-id");
 
   if (!sessionID) {
     return;

@@ -3,7 +3,7 @@ import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
 export const toggleCandidateAction = async (id: number) => {
-  let sessionID = cookies().get("session-id");
+  const sessionID = cookies().get("session-id");
 
   if (!sessionID) {
     return { warning: "Unable to toggle the candidate. Session ID not found" };
@@ -28,7 +28,7 @@ export const toggleCandidateAction = async (id: number) => {
     return {
       success: `"${toggleCandidate.name}" was removed from remaining candidates successfully`,
     };
-  } catch (error) {
+  } catch {
     return { error: "Something went wrong ! Unable to toggle the candidate." };
   }
 };

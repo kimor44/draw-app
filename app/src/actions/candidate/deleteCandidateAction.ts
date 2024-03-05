@@ -4,7 +4,7 @@ import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
 export const deleteCandidateAction = async (id: number) => {
-  let sessionID = cookies().get("session-id");
+  const sessionID = cookies().get("session-id");
 
   if (!sessionID) {
     return {
@@ -36,7 +36,7 @@ export const deleteCandidateAction = async (id: number) => {
     return {
       success: `"${candidateToDelete.name}" was deleted successfully !`,
     };
-  } catch (error) {
+  } catch {
     return {
       error: "Unable to delete the candidate.",
     };

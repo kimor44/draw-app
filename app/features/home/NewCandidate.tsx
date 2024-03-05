@@ -11,7 +11,7 @@ type TNewCandidate = {
 const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
   const router = useRouter();
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    event: React.FormEvent<HTMLFormElement>
+    event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
     const form = event.currentTarget;

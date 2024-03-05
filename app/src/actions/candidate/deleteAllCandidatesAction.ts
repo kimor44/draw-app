@@ -5,11 +5,11 @@ import { prisma } from "@/app/lib/prisma/_base";
 import { cookies } from "next/headers";
 
 export const deleteAllCandidatesAction = async (ids: number[]) => {
-  if (!ids.length) {
+  if (ids.length === 0) {
     return { warning: "No candidates to delete" };
   }
 
-  let sessionID = cookies().get("session-id");
+  const sessionID = cookies().get("session-id");
 
   if (!sessionID) {
     return {
@@ -25,7 +25,7 @@ export const deleteAllCandidatesAction = async (ids: number[]) => {
       },
     });
 
-    if (!candidatesToDelete.length) {
+    if (candidatesToDelete.length === 0) {
       return {
         warning: "Something went wrong. Unable to delete the candidates",
       };
