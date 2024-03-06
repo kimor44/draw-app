@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Candidates, TCandidate } from "@/app/features/home/Candidates";
-import { DeleteAllCandidates } from "@/app/features/home/DeleteAllCandidates";
-import { NewCandidate } from "@/app/features/home/NewCandidate";
-import { NewDraw } from "@/app/features/home/NewDraw";
-import { useEffect, useState } from "react";
-import { filteredCandidatesByRemaining } from "@/app/lib/utils/filterCandidatesByRemaining";
-import { toast } from "sonner";
-import { getErrorMessage } from "@/app/lib/errors/getErrorMessage";
-import { getCandidateIds } from "@/app/lib/utils/getCandidateIds";
+import Link from 'next/link';
+import { Candidates, TCandidate } from '@/app/features/home/Candidates';
+import { DeleteAllCandidates } from '@/app/features/home/DeleteAllCandidates';
+import { NewCandidate } from '@/app/features/home/NewCandidate';
+import { NewDraw } from '@/app/features/home/NewDraw';
+import { useEffect, useState } from 'react';
+import { filteredCandidatesByRemaining } from '@/app/lib/utils/filterCandidatesByRemaining';
+import { toast } from 'sonner';
+import { getErrorMessage } from '@/app/lib/errors/getErrorMessage';
+import { getCandidateIds } from '@/app/lib/utils/getCandidateIds';
 
 export const App = () => {
   const [candidates, setCandidates] = useState<TCandidate[]>([]);
@@ -17,19 +17,16 @@ export const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("/api/candidate", { method: "GET" }).then((res) =>
-        res
-          .json()
-          .then((data) => {
-            if (isRendered) {
-              setCandidates(data);
-              setIsRendered(false);
-            }
-          })
-          .catch((error) => {
-            toast.error(getErrorMessage(error));
-          })
-      );
+      try {
+        const response = await fetch('/api/candidate', { method: 'GET' });
+        const data = await response.json();
+        if (isRendered) {
+          setCandidates(data);
+          setIsRendered(false);
+        }
+      } catch (error) {
+        toast.error(getErrorMessage(error));
+      }
     };
 
     fetchData();

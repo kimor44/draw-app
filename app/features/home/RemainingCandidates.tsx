@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { TCandidate } from "@/app/features/home/Candidates";
+import { TCandidate } from '@/app/features/home/Candidates';
 
 type TRemainingCandidates = {
   candidates: TCandidate[];
 };
 
 const RemainingCandidates: React.FC<TRemainingCandidates> = ({
-  candidates,
+  candidates
 }: TRemainingCandidates) => {
   return (
     <ul className="flex flex-col gap-4 w-full">

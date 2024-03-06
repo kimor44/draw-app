@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { addCandidateAction } from "@/app/src/actions/candidate/addCandidateAction";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { addCandidateAction } from '@/app/src/actions/candidate/addCandidateAction';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 type TNewCandidate = {
   onActionChange: () => void;
@@ -11,7 +11,7 @@ type TNewCandidate = {
 const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
   const router = useRouter();
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    event: React.FormEvent<HTMLFormElement>,
+    event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
     const form = event.currentTarget;

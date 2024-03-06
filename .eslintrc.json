@@ -4,19 +4,60 @@
     "es2021": true,
     "node": true
   },
-  "parserOptions": { "ecmaVersion": "latest" },
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "requireConfigFile": false,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
   "extends": [
-    "next/core-web-vitals",
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:github/recommended",
     "plugin:import/recommended",
-    "plugin:unicorn/recommended"
+    "plugin:unicorn/recommended",
+    "plugin:react-hooks/recommended",
+    "next",
+    "prettier",
+    "semistandard",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["github", "import", "unicorn"],
+  "plugins": ["react", "github", "import", "unicorn", "jsx-a11y"],
   "rules": {
+    "import/no-commonjs": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "singleQuote": true
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "ignore",
+        "asyncArrow": "always"
+      }
+    ],
+    "no-console": "warn",
+    "filenames/match-regex": "off",
     "semi": ["error", "always"],
-    "quotes": ["error", "double"],
+    "quotes": [
+      "error",
+      "single",
+      { "allowTemplateLiterals": true, "avoidEscape": true }
+    ],
+    "func-style": ["error", "expression"],
+    "no-extra-semi": "error",
+    "default-case": "error",
     "array-callback-return": ["error", { "allowImplicit": true }],
+    "i18n-text/no-en": "off",
     // Unicorn
     "unicorn/prevent-abbreviations": 0,
     "unicorn/prefer-top-level-await": 0,
@@ -29,6 +70,17 @@
     "unicorn/no-useless-undefined": 0,
     "unicorn/no-useless-promise-resolve-reject": 0,
     "unicorn/filename-case": 0,
-    "unicorn/no-array-reduce": 0
+    "unicorn/no-array-reduce": 0,
+    "unicorn/prefer-module": "off"
+  },
+  "globals": {
+    "jsx": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

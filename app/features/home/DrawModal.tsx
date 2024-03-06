@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { TCandidate } from "@/app/features/home/Candidates";
-import { RemainingCandidates } from "@/app/features/home/RemainingCandidates";
-import { LaunchNewDraw } from "@/app/features/home/LaunchNewDraw";
+import { TCandidate } from '@/app/features/home/Candidates';
+import { RemainingCandidates } from '@/app/features/home/RemainingCandidates';
+import { LaunchNewDraw } from '@/app/features/home/LaunchNewDraw';
 
 type TDrawModal = {
   isOpen: boolean;
@@ -15,12 +15,12 @@ const DrawModal: React.FC<TDrawModal> = ({
   isOpen,
   handleModal,
   candidates,
-  onActionChange,
+  onActionChange
 }: TDrawModal) => {
   return (
     <div
       className={`${
-        isOpen ? "block" : "hidden"
+        isOpen ? 'block' : 'hidden'
       } fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center`}
     >
       <div className="bg-white w-1/2 m-auto p-4 rounded-lg flex flex-col gap-5">

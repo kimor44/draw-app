@@ -1,8 +1,8 @@
-import { prisma } from "@/app/lib/prisma/_base";
-import { cookies } from "next/headers";
+import { prisma } from '@/app/lib/prisma/_base';
+import { cookies } from 'next/headers';
 
 export const getCandidateInformation = async (id: number) => {
-  const sessionID = cookies().get("session-id");
+  const sessionID = cookies().get('session-id');
 
   if (!sessionID) {
     return;
@@ -12,8 +12,8 @@ export const getCandidateInformation = async (id: number) => {
     const candidate = await prisma.candidate.findUnique({
       where: {
         id,
-        sessionID: sessionID?.value,
-      },
+        sessionID: sessionID?.value
+      }
     });
 
     return candidate;

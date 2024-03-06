@@ -1,8 +1,8 @@
-"use client";
-import { deleteAllCandidatesAction } from "@/app/src/actions/candidate/deleteAllCandidatesAction";
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
-import { toast } from "sonner";
+'use client';
+import { deleteAllCandidatesAction } from '@/app/src/actions/candidate/deleteAllCandidatesAction';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { toast } from 'sonner';
 
 type TDeleteAllCandidates = {
   ids: number[];

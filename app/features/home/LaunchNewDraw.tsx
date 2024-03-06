@@ -1,11 +1,11 @@
-"use client";
-import { TCandidate } from "@/app/features/home/Candidates";
-import { getRandomInt } from "@/app/lib/utils/getRandomInt";
-import { waiting } from "@/app/lib/utils/waiting";
-import { toggleCandidateAction } from "@/app/src/actions/candidate/toggleCandidateAction";
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
-import { toast } from "sonner";
+'use client';
+import { TCandidate } from '@/app/features/home/Candidates';
+import { getRandomInt } from '@/app/lib/utils/getRandomInt';
+import { waiting } from '@/app/lib/utils/waiting';
+import { toggleCandidateAction } from '@/app/src/actions/candidate/toggleCandidateAction';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { toast } from 'sonner';
 
 export type TLaunchNewDraw = {
   candidates: TCandidate[];
@@ -24,7 +24,9 @@ const LaunchNewDraw = ({ candidates, onActionChange }: TLaunchNewDraw) => {
       const toggleCandidate = await toggleCandidateAction(randomCandidate.id);
 
       if (toggleCandidate?.error) {
-        toast.warning("Unable to toggle the candidate. Session ID not found");
+        toast.warning(
+          `Unable to toggle the candidate. Session ID not found : ${toggleCandidate.error}`
+        );
         return;
       }
 

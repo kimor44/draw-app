@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { CandidateLine } from "@/app/features/home/CandidateLine";
+import { CandidateLine } from '@/app/features/home/CandidateLine';
 
 export type TCandidate = {
   id: number;

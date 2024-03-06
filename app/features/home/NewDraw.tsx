@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { DrawModal } from "./DrawModal";
-import { TCandidate } from "@/app/features/home/Candidates";
+import { useState } from 'react';
+import { DrawModal } from './DrawModal';
+import { TCandidate } from '@/app/features/home/Candidates';
 
 type TNewDraw = {
   candidates: TCandidate[];
@@ -11,7 +11,7 @@ type TNewDraw = {
 
 const NewDraw: React.FC<TNewDraw> = ({
   candidates,
-  onActionChange,
+  onActionChange
 }: TNewDraw) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
