@@ -10,7 +10,7 @@ const Page = async ({ params }: { params: { id: number } }) => {
   }
 
   return (
-    <div>
+    <div className="text-text">
       <h1>
         Name : <span className="">{candidate?.name}</span>
       </h1>

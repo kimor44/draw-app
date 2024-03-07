@@ -15,7 +15,7 @@ const RemainingCandidates: React.FC<TRemainingCandidates> = ({
         return (
           <li
             key={candidate?.id.toString()}
-            className="text-center dark:text-black"
+            className="text-center text-text dark:text-background"
           >
             {candidate?.name}
           </li>

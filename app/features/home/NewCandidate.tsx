@@ -38,14 +38,14 @@ const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
   return (
     <form onSubmit={onSubmit} className="flex gap-4">
       <input
-        className="text-text p-3 rounded-lg border-primary/80 border-2"
+        className="text-text dark:text-background p-3 rounded-lg border-primary/80 border-2"
         type="text"
         name="name"
         placeholder="new candidate name"
       />
       <button
         type="submit"
-        className="bg-primary text-background rounded px-4 py-2"
+        className="bg-primary text-background dark:text-text rounded px-4 py-2"
       >
         Add candidate
       </button>

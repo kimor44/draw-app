@@ -14,7 +14,7 @@ const Error = ({
       <h2>Something went wrong</h2>
       <p>{error.message}</p>
       <button
-        className="bg-blue-500 rounded px-4 py-2 cursor-pointer"
+        className="rounded bg-primary px-4 py-2 cursor-pointer"
         onClick={reset}
       >
         Try again

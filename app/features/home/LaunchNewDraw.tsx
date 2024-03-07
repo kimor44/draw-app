@@ -43,11 +43,11 @@ const LaunchNewDraw = ({ candidates, onActionChange }: TLaunchNewDraw) => {
 
   return (
     <button
-      className="bg-green-500 text-white rounded px-4 py-2 disabled:bg-green-200 disabled:text-gray-600"
+      className="text-background dark:text-text bg-accent rounded px-4 py-2 disabled:opacity-60 disabled:text-text/20 disabled:cursor-not-allowed"
       onClick={launchDraw}
       disabled={isPending}
     >
-      Launch new Draw
+      {isPending ? 'Launching...' : 'Launch New Draw'}
     </button>
   );
 };
