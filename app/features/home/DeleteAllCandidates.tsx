@@ -38,7 +38,7 @@ const DeleteAllCandidates = ({ onActionChange, ids }: TDeleteAllCandidates) => {
 
   return (
     <button
-      className="px-3 py-2 bg-red-500 text-slate-100 font-bold disabled:opacity-75 disabled:bg-red-300 rounded"
+      className="px-3 py-2 bg-text text-background font-bold disabled:opacity-75 disabled:bg-text/70 rounded"
       onClick={deleteAll}
       disabled={isPending}
     >

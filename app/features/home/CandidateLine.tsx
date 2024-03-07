@@ -46,11 +46,11 @@ const CandidateLine: React.FC<TCandidateLine> = ({
   };
 
   let classes = candidate.isRemaining
-    ? 'text-green-500'
-    : 'text-slate-400 line-through';
+    ? 'text-accent'
+    : 'text-text opacity-40 line-through';
 
   if (isPending) {
-    classes += ' opacity-75 text-slate-400 line-through';
+    classes += ' text-text opacity-40 line-through';
   }
 
   return (
@@ -62,7 +62,7 @@ const CandidateLine: React.FC<TCandidateLine> = ({
         {candidate?.name}
       </Link>
       <button
-        className="px-2 py-1 text-red-600 disabled:text-red-200 font-bold disabled:opacity-75"
+        className="px-2 py-1 text-text disabled:text-text/80 font-bold disabled:opacity-75"
         onClick={deleteCandidate}
         disabled={isPending}
       >

@@ -46,7 +46,9 @@ export const App = () => {
 
   return (
     <main className="flex h-full flex-col items-center gap-10 p-12">
-      <Link href="/draw">Draw</Link>
+      <Link className="text-text" href="/draw">
+        Draw
+      </Link>
       {candidates.length > 0 && (
         <DeleteAllCandidates
           onActionChange={onActionChange}
