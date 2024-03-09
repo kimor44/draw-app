@@ -23,6 +23,14 @@ const config: Config = {
       boxShadow: {
         navbar:
           '0 10px 15px -3px rgb(var(--shadow-navbar)), 0 4px 6px -4px rgb(var(--shadow-navbar))'
+      },
+      keyframes: {
+        rise: {
+          '0%': { transform: 'translateX(-20px) translateY(20px)' },
+          '33%': { transform: 'translateX(-15px) translateY(10px)' },
+          '66%': { transform: 'translateX(-10px) translateY(5px)' },
+          '100%': { transform: 'translateX(0) translateY(0)' }
+        }
       }
     }
   },

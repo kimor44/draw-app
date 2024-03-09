@@ -15,7 +15,7 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
-          <div>
+          <div className="flex flex-col justify-center">
             <ThemeSwitch />
           </div>
         </div>

@@ -13,6 +13,9 @@ dependencies:
   '@vercel/kv':
     specifier: ^1.0.1
     version: 1.0.1
+  lucide-react:
+    specifier: ^0.353.0
+    version: 0.353.0(react@18.2.0)
   next:
     specifier: 14.1.0
     version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -2593,6 +2596,14 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lucide-react@0.353.0(react@18.2.0):
+    resolution: {integrity: sha512-Cgo3pysxtXS3xTfL3H725H6u8MhTFdA4lpUeEKzaX77zF1TmuzAkU1+f4zTV4u2HY5Sae/M1GDpoL6LoUuRb9A==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
