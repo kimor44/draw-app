@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
+import { Providers } from './providers';
+import { Navbar } from './features/header/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,10 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressContentEditableWarning>
       <body className={inter.className}>
-        {children}
-        <Toaster position="top-center" richColors={true} />
+        <Providers>
+          <Navbar />
+          {children}
+          <Toaster position="top-center" richColors={true} />
+        </Providers>
       </body>
     </html>
   );

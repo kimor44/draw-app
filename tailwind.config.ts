@@ -19,9 +19,14 @@ const config: Config = {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         accent: 'var(--accent)'
+      },
+      boxShadow: {
+        navbar:
+          '0 10px 15px -3px rgb(var(--shadow-navbar)), 0 4px 6px -4px rgb(var(--shadow-navbar))'
       }
     }
   },
-  plugins: []
+  plugins: [],
+  darkMode: 'class'
 };
 export default config;

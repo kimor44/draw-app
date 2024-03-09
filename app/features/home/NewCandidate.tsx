@@ -38,7 +38,7 @@ const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
   return (
     <form onSubmit={onSubmit} className="flex gap-4">
       <input
-        className="text-text dark:text-background p-3 rounded-lg border-primary/80 border-2"
+        className="text-text p-3 rounded-lg border-primary/80 border-2"
         type="text"
         name="name"
         placeholder="new candidate name"
