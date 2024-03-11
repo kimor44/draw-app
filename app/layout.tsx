@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressContentEditableWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} transition`}>
         <Providers>
           <Navbar />
           {children}

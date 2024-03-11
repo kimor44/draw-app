@@ -45,7 +45,7 @@ const NewCandidate = ({ onActionChange: onAddCandidate }: TNewCandidate) => {
       />
       <button
         type="submit"
-        className="bg-primary text-background dark:text-text rounded px-4 py-2"
+        className="bg-primary text-background dark:text-text rounded px-4 py-2 transition"
       >
         Add candidate
       </button>
