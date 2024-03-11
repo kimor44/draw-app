@@ -5,18 +5,24 @@
 @layer base {
   :root {
     --text: #0d0c0c;
+    --text-40: #0d0c0c4d;
     --background: #f7f7f7;
     --primary: #2e4d76;
     --secondary: #c4e19d;
     --accent: #72d16b;
+    --accent-40: #72d16b4d;
+    --accent-foreground: #72d16b33;
     --shadow-navbar: 0 0 0 / 0.1;
   }
   .dark {
     --text: #f3f2f2;
+    --text-40: #f3f2f24d;
     --background: #080808;
     --primary: #89a9d1;
     --secondary: #44621e;
     --accent: #34942e;
+    --accent-40: #34942e4d;
+    --accent-foreground: #34942e33;
     --shadow-navbar: 255 255 255 / 0.1;
   }
 }
@@ -24,11 +30,4 @@
 body {
   color: var(--text);
   background-color: var(--background);
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
 }

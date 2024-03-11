@@ -15,10 +15,13 @@ const config: Config = {
       },
       colors: {
         text: 'var(--text)',
+        'text-40': 'var(--text-40)',
         background: 'var(--background)',
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
-        accent: 'var(--accent)'
+        accent: 'var(--accent)',
+        'accent-40': 'var(--accent-40)',
+        accentForeground: 'var(--accent-foreground)'
       },
       boxShadow: {
         navbar:
