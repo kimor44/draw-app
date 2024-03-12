@@ -74,8 +74,8 @@
     "unicorn/prefer-module": "off",
     // TypeScript
     "@typescript-eslint/no-unused-vars": "warn",
-    "multiline-ternary": ["error", "never"],
-    "operator-linebreak": ["error", "before"]
+    "multiline-ternary": "off",
+    "operator-linebreak": ["error", "before", { "overrides": { "=": "after" } }]
   },
   "globals": {
     "jsx": true
