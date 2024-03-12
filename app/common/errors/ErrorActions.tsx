@@ -2,13 +2,17 @@ import { TryAgainButton } from '../actions/TryAgainButton';
 import { GoBackHomeLink } from '../actions/GoBackHomeLink';
 
 export type TErrorActions = {
-  tryAgainAction: () => void;
+  tryAgainAction?: () => void;
+  hasTryAgainAction?: boolean;
 };
 
-const ErrorActions = ({ tryAgainAction }: TErrorActions) => {
+const ErrorActions = ({
+  tryAgainAction,
+  hasTryAgainAction = true
+}: TErrorActions) => {
   return (
     <div className="actions flex justify-center gap-16">
-      <TryAgainButton onClick={tryAgainAction} />
+      {hasTryAgainAction && <TryAgainButton onClick={tryAgainAction} />}
       <GoBackHomeLink />
     </div>
   );
