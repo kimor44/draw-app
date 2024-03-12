@@ -1,5 +1,9 @@
 'use client';
 
+import { ErrorActions } from './common/errors/ErrorActions';
+import { ErrorInformations } from './common/errors/ErrorInformations';
+import { ErrorWrapper } from './common/errors/ErrorWrapper';
+
 export const GlobalError = ({
   error,
   reset
@@ -7,12 +11,20 @@ export const GlobalError = ({
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
+  const tryAgainAction = () => {
+    reset();
+  };
   return (
     <html>
       <body>
-        <h2>Something went wrong!</h2>
-        <pre>{error.message}</pre>
-        <button onClick={() => reset()}>Try again</button>
+        <ErrorWrapper>
+          <ErrorInformations
+            errorMessage="Something went wrong!"
+            errorTitle={error.message}
+            advice="Please try again later or contact support if the problem persists."
+          />
+          <ErrorActions tryAgainAction={tryAgainAction} />
+        </ErrorWrapper>
       </body>
     </html>
   );
