@@ -73,7 +73,9 @@
     "unicorn/no-array-reduce": 0,
     "unicorn/prefer-module": "off",
     // TypeScript
-    "@typescript-eslint/no-unused-vars": "warn"
+    "@typescript-eslint/no-unused-vars": "warn",
+    "multiline-ternary": ["error", "never"],
+    "operator-linebreak": ["error", "before"]
   },
   "globals": {
     "jsx": true
