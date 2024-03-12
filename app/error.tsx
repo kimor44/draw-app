@@ -19,7 +19,7 @@ const ErrorBoundary = ({
       <ErrorInformations
         errorMessage="There was a problem"
         errorTitle={error.message}
-        advice="Please try again later or contact support if the problem persists."
+        advice="Please try again later or contact support if the problem persists"
       />
       <ErrorActions tryAgainAction={tryAgainAction} />
     </ErrorWrapper>

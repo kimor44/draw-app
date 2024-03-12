@@ -1,6 +1,9 @@
 'use client';
 
-import Link from 'next/link';
+import { ErrorActions } from '@/app/common/errors/ErrorActions';
+import { ErrorInformations } from '@/app/common/errors/ErrorInformations';
+import { ErrorWrapper } from '@/app/common/errors/ErrorWrapper';
+import { getErrorMessage } from '@/app/lib/errors/getErrorMessage';
 
 const Error = ({
   error,
@@ -9,22 +12,19 @@ const Error = ({
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
+  const tryAgainAction = () => {
+    reset();
+  };
+
   return (
-    <div>
-      <h2>Something went wrong</h2>
-      <p>{error.message}</p>
-      <button
-        className="rounded bg-primary px-4 py-2 cursor-pointer"
-        onClick={reset}
-      >
-        Try again
-      </button>
-      <p>
-        <Link className="cursor-pointer underline" href="/">
-          Back to Home
-        </Link>
-      </p>
-    </div>
+    <ErrorWrapper>
+      <ErrorInformations
+        errorMessage="Could not find requested candidate"
+        errorTitle={getErrorMessage(error)}
+        advice="Please try again later or contact support if the problem persists"
+      />
+      <ErrorActions tryAgainAction={tryAgainAction} />
+    </ErrorWrapper>
   );
 };
 
