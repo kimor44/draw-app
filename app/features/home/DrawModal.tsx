@@ -1,8 +1,14 @@
 'use client';
 
 import { TCandidate } from '@/app/features/home/Candidates';
-import { RemainingCandidates } from './RemainingCandidates';
-import { LaunchNewDraw } from './LaunchNewDraw';
+import { LaunchNewDraw } from '@/app/features/home/LaunchNewDraw';
+import { RemainingCandidates } from '@/app/features/home/RemainingCandidates';
+import { getRandomInt } from '@/app/lib/utils/getRandomInt';
+import { waiting } from '@/app/lib/utils/waiting';
+import { toggleCandidateAction } from '@/app/src/actions/candidate/toggleCandidateAction';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { toast } from 'sonner';
 
 type TDrawModal = {
   isOpen: boolean;
@@ -17,6 +23,35 @@ const DrawModal: React.FC<TDrawModal> = ({
   candidates,
   onActionChange
 }: TDrawModal) => {
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const launchDraw = () => {
+    startTransition(async () => {
+      const randomCandidate: TCandidate =
+        candidates[getRandomInt(0, candidates.length - 1)];
+      waiting(2000);
+
+      const toggleCandidate = await toggleCandidateAction(randomCandidate.id);
+
+      if (toggleCandidate?.error) {
+        toast.warning(
+          `Unable to toggle the candidate. Session ID not found : ${toggleCandidate.error}`
+        );
+        return;
+      }
+
+      if (toggleCandidate?.warning) {
+        toast.warning(toggleCandidate.warning);
+        return;
+      }
+
+      onActionChange();
+      router.refresh();
+      toast.success(toggleCandidate?.success);
+    });
+  };
+
   const hasCandidates = candidates.length > 0;
   return (
     <div
@@ -42,10 +77,7 @@ const DrawModal: React.FC<TDrawModal> = ({
           {hasCandidates && (
             <>
               <RemainingCandidates candidates={candidates} />
-              <LaunchNewDraw
-                candidates={candidates}
-                onActionChange={onActionChange}
-              />
+              <LaunchNewDraw launchNewDraw={launchDraw} isPending={isPending} />
             </>
           )}
         </section>
