@@ -1,8 +1,8 @@
 'use client';
 
+import { TCandidate } from '@/app/features/home/Candidates';
 import { useState } from 'react';
 import { DrawModal } from './DrawModal';
-import { TCandidate } from '@/app/features/home/Candidates';
 
 type TNewDraw = {
   candidates: TCandidate[];

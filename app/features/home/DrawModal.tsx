@@ -3,13 +3,12 @@
 import { TCandidate } from '@/app/features/home/Candidates';
 import { LaunchNewDraw } from '@/app/features/home/LaunchNewDraw';
 import { RemainingCandidates } from '@/app/features/home/RemainingCandidates';
-import { getRandomInt } from '@/app/lib/utils/getRandomInt';
-import { waiting } from '@/app/lib/utils/waiting';
+import { getRandomCandidate } from '@/app/lib/utils/getRandomCandidate';
 import { toggleCandidateAction } from '@/app/src/actions/candidate/toggleCandidateAction';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import { toast } from 'sonner';
-import Image from 'next/image';
 
 type TDrawModal = {
   isOpen: boolean;
@@ -29,9 +28,10 @@ const DrawModal: React.FC<TDrawModal> = ({
 
   const launchDraw = () => {
     startTransition(async () => {
-      const randomCandidate: TCandidate =
-        candidates[getRandomInt(0, candidates.length - 1)];
-      waiting(4000);
+      const randomCandidate: TCandidate = await getRandomCandidate(
+        candidates,
+        2000
+      );
 
       const toggleCandidate = await toggleCandidateAction(randomCandidate.id);
 
