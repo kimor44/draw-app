@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     "postcss.config.js",
     "next.config.js",
-    ".eslintrc.json"
+    ".eslintrc.json",
+    "declarations.d.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -4,7 +4,7 @@ import { ErrorActions } from './common/errors/ErrorActions';
 import { ErrorInformations } from './common/errors/ErrorInformations';
 import { ErrorWrapper } from './common/errors/ErrorWrapper';
 
-export const GlobalError = ({
+const GlobalError = ({
   error,
   reset
 }: {
@@ -29,3 +29,5 @@ export const GlobalError = ({
     </html>
   );
 };
+
+export default GlobalError;

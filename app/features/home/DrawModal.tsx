@@ -9,6 +9,7 @@ import { toggleCandidateAction } from '@/app/src/actions/candidate/toggleCandida
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 type TDrawModal = {
   isOpen: boolean;
@@ -30,7 +31,7 @@ const DrawModal: React.FC<TDrawModal> = ({
     startTransition(async () => {
       const randomCandidate: TCandidate =
         candidates[getRandomInt(0, candidates.length - 1)];
-      waiting(2000);
+      waiting(4000);
 
       const toggleCandidate = await toggleCandidateAction(randomCandidate.id);
 
@@ -76,7 +77,22 @@ const DrawModal: React.FC<TDrawModal> = ({
           </h1>
           {hasCandidates && (
             <>
-              <RemainingCandidates candidates={candidates} />
+              {isPending ? (
+                <div className="flex flex-col justify-center text-center items-center">
+                  <Image
+                    src="/spinner.svg"
+                    alt="Spinner"
+                    width={100}
+                    height={100}
+                    className="animate-spin"
+                  />
+                  <h3 className="text-center text-text dark:text-background text-xl">
+                    Draw in progress...
+                  </h3>
+                </div>
+              ) : (
+                <RemainingCandidates candidates={candidates} />
+              )}
               <LaunchNewDraw launchNewDraw={launchDraw} isPending={isPending} />
             </>
           )}
