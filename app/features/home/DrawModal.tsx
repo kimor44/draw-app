@@ -1,15 +1,13 @@
 'use client';
 
 import { TCandidate } from '@/app/features/home/Candidates';
-import { LaunchNewDraw } from '@/app/features/home/LaunchNewDraw';
-import { RemainingCandidates } from '@/app/features/home/RemainingCandidates';
 import { getRandomCandidate } from '@/app/lib/utils/getRandomCandidate';
 import { toggleCandidateAction } from '@/app/src/actions/candidate/toggleCandidateAction';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { toast } from 'sonner';
 import { DrawModalTitle } from './DrawModalTitle';
+import { DrawModalContent } from './DrawModalContent';
 
 type TDrawModal = {
   isOpen: boolean;
@@ -85,31 +83,12 @@ const DrawModal: React.FC<TDrawModal> = ({
             chosenCandidate={chosenCandidate}
           />
           {(hasCandidates || chosenCandidate) && (
-            <>
-              {isPending ? (
-                <div className="flex flex-col justify-center text-center items-center">
-                  <Image
-                    src="/spinner.svg"
-                    alt="Spinner"
-                    width={100}
-                    height={100}
-                    className="animate-spin"
-                  />
-                </div>
-              ) : chosenCandidate ? (
-                <h2 className="text-center text-background bg-text dark:bg-background dark:text-text flex justify-center items-center align-middle font-bold text-xl py-2 rounded-md">
-                  {chosenCandidate}
-                </h2>
-              ) : (
-                <RemainingCandidates candidates={candidates} />
-              )}
-              {!chosenCandidate && (
-                <LaunchNewDraw
-                  launchNewDraw={launchDraw}
-                  isPending={isPending}
-                />
-              )}
-            </>
+            <DrawModalContent
+              candidates={candidates}
+              launchDraw={launchDraw}
+              isPending={isPending}
+              chosenCandidate={chosenCandidate}
+            />
           )}
         </section>
       </div>
