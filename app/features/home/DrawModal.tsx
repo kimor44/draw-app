@@ -63,7 +63,7 @@ const DrawModal: React.FC<TDrawModal> = ({
       } fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center`}
     >
       <div
-        className={`bg-background dark:bg-text w-1/2 m-auto p-4 rounded-lg ${hasCandidates ? '' : 'pb-10'}`}
+        className={`bg-background dark:bg-text w-full md:w-1/2 m-auto p-4 rounded-lg ${hasCandidates ? '' : 'pb-10'}`}
       >
         <div className="flex justify-end">
           <button
