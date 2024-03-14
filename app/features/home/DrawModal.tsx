@@ -7,8 +7,9 @@ import { getRandomCandidate } from '@/app/lib/utils/getRandomCandidate';
 import { toggleCandidateAction } from '@/app/src/actions/candidate/toggleCandidateAction';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { toast } from 'sonner';
+import { DrawModalTitle } from './DrawModalTitle';
 
 type TDrawModal = {
   isOpen: boolean;
@@ -24,6 +25,7 @@ const DrawModal: React.FC<TDrawModal> = ({
   onActionChange
 }: TDrawModal) => {
   const [isPending, startTransition] = useTransition();
+  const [chosenCandidate, setChosenCandidate] = useState<string | null>(null);
   const router = useRouter();
 
   const launchDraw = () => {
@@ -47,6 +49,7 @@ const DrawModal: React.FC<TDrawModal> = ({
         return;
       }
 
+      setChosenCandidate(randomCandidate.name);
       onActionChange();
       router.refresh();
       toast.success(toggleCandidate?.success);
@@ -54,6 +57,7 @@ const DrawModal: React.FC<TDrawModal> = ({
   };
 
   const hasCandidates = candidates.length > 0;
+
   return (
     <div
       className={`${
@@ -66,16 +70,21 @@ const DrawModal: React.FC<TDrawModal> = ({
         <div className="flex justify-end">
           <button
             className="text-text dark:text-background font-bold rounded px-4 py-2"
-            onClick={() => handleModal()}
+            onClick={() => {
+              setChosenCandidate(null);
+              handleModal();
+            }}
           >
             X
           </button>
         </div>
         <section className="flex flex-col gap-5">
-          <h1 className="text-2xl font-bold text-center text-text dark:text-background">
-            {hasCandidates ? 'Candidates remaining' : 'No candidates remaining'}
-          </h1>
-          {hasCandidates && (
+          <DrawModalTitle
+            hasCandidates={hasCandidates}
+            isPending={isPending}
+            chosenCandidate={chosenCandidate}
+          />
+          {(hasCandidates || chosenCandidate) && (
             <>
               {isPending ? (
                 <div className="flex flex-col justify-center text-center items-center">
@@ -86,14 +95,20 @@ const DrawModal: React.FC<TDrawModal> = ({
                     height={100}
                     className="animate-spin"
                   />
-                  <h3 className="text-center text-text dark:text-background text-xl">
-                    Draw in progress...
-                  </h3>
                 </div>
+              ) : chosenCandidate ? (
+                <h2 className="text-center text-background bg-text dark:bg-background dark:text-text flex justify-center items-center align-middle font-bold text-xl py-2 rounded-md">
+                  {chosenCandidate}
+                </h2>
               ) : (
                 <RemainingCandidates candidates={candidates} />
               )}
-              <LaunchNewDraw launchNewDraw={launchDraw} isPending={isPending} />
+              {!chosenCandidate && (
+                <LaunchNewDraw
+                  launchNewDraw={launchDraw}
+                  isPending={isPending}
+                />
+              )}
             </>
           )}
         </section>
