@@ -63,24 +63,15 @@ const DrawModal: React.FC<TDrawModal> = ({
       } fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center`}
     >
       <div
-        className={`bg-background dark:bg-text w-full md:w-1/2 m-auto p-4 rounded-lg ${hasCandidates ? '' : 'pb-10'}`}
+        className={`bg-background dark:bg-text w-full md:w-1/2 m-auto p-4 rounded-lg ${hasCandidates ? '' : 'p-10'}`}
       >
-        <div className="flex justify-end">
-          <button
-            className="text-text dark:text-background font-bold rounded px-4 py-2"
-            onClick={() => {
-              setChosenCandidate(null);
-              handleModal();
-            }}
-          >
-            X
-          </button>
-        </div>
         <section className="flex flex-col gap-5">
           <DrawModalTitle
             hasCandidates={hasCandidates}
             isPending={isPending}
             chosenCandidate={chosenCandidate}
+            setChosenCandidate={setChosenCandidate}
+            handleModal={handleModal}
           />
           {(hasCandidates || chosenCandidate) && (
             <DrawModalContent

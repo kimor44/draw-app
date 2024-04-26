@@ -12,4 +12,5 @@ const TryAgainButton: React.FC<
     </button>
   );
 };
+
 export { TryAgainButton };
