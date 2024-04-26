@@ -19,7 +19,7 @@ export const ThemeSwitch = () => {
         key={resolvedTheme}
         aria-label="Switch to light mode"
         onClick={() => setTheme('light')}
-        className="p-2 rounded-md bg-background text-text transition-all animate-[rise_0.3s_ease-out]"
+        className="p-2 rounded-md text-text transition-colors animate-[rise_0.3s_ease-out]"
       >
         <Moon size={24} />
       </button>
@@ -32,7 +32,7 @@ export const ThemeSwitch = () => {
         key={resolvedTheme}
         aria-label="Switch to dark mode"
         onClick={() => setTheme('dark')}
-        className="p-2 rounded-md bg-background text-text transition-all animate-[rise_0.3s_ease-out]"
+        className="p-2 rounded-md text-text transition-colors animate-[rise_0.3s_ease-out]"
       >
         <Sun size={24} />
       </button>
